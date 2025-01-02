@@ -15,7 +15,8 @@ export const Formulary = ({type}) => {
     const handleChange = e => setFormData({...formData, [e.target.name]: e.target.value})
     const handleSubmit =  e => {
         e.preventDefault()
-        console.log('submit')
+        console.log('submit', formData)
+        type=='login'? actions.login(formData) : actions.register(formData)
     }
 
 
