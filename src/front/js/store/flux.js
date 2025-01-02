@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+			auth: localStorage.getItem('token') || false,
 			demo: [
 				{
 					title: "FIRST",
@@ -31,6 +32,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if(!resp.ok) throw new Error('Error registering')
 					const data = await resp.json()
 					console.log(data)
+					localStorage.setItem('token', data.token)
+					setStore({auth: true, token: data.token})
 				}
 				catch (error){
 					console.error(error)
@@ -50,6 +53,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if(!resp.ok) throw new Error('Error registering')
 					const data = await resp.json()
 					console.log(data)
+					localStorage.setItem('token', data.token)
+					setStore({auth: true, token: data.token})
 				}
 				catch (error){
 					console.error(error)
