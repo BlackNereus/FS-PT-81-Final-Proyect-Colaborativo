@@ -38,9 +38,32 @@ def register():
     new_user = User(email=email, password=hashed_password, is_active=True)
     db.session.add(new_user)
     db.session.commit()
-    token = create_access_token(identity=new_user.id)
+    token = create_access_token(identity=str(new_user.id))
     return jsonify({"msg": 'ok', 'token': token})
 
 @api.route('/login', methods=['POST'])
 def login():
-    return ''
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+
+    if not email or not password:
+        return jsonify({"msg": "missing data"}), 400
+    exist = User.query.filter_by(email=email).first()
+    if exist:
+        return jsonify({"msg": "no user found"}), 404
+    
+
+    hashed_password = generate_password_hash(password)
+    if check_password_hash(exist.password, password):
+        return jsonify({"msg":"email/password wrong"})
+
+    token = create_access_token(identity=exist.id)
+    return jsonify({"msg": 'ok', 'token': token})
+
+@api.route('/protected', methods=['GET'])
+@jwt_required()
+def protected():
+    identity = get_jwt_identity()
+    print('user identity->', identity)
+    user = User.query.get(id)
+    return jsonify({"msg":"OK", "user": user.serialize()})
