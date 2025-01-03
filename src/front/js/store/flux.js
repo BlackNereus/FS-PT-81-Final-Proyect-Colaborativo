@@ -18,6 +18,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
+			getUserData: async () =>{try{
+
+				const resp = await fetch('https://verbose-guide-wr9v5p7rvqvgf566r-3001.app.github.dev/api/protected',{
+					method: 'GET',
+					headers: {
+						'Content-Type' : 'application/json',
+						'Authorization': `Bearer ${localStorage.getItem('token')}`
+					},
+					body: JSON.stringify(formData)
+				})
+				if(!resp.ok) throw new Error('Error registering')
+				const data = await resp.json()
+				console.log(data)
+				localStorage.setItem('token', data.token)
+				setStore({user: data.user})
+			}
+			catch (error){
+				console.error(error)
+			}
+		},
 			register: async formData => {
 
 				try{
