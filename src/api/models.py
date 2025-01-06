@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class User(db.Model):
+class Users(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -13,7 +13,7 @@ class User(db.Model):
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<Users {self.email}>'
 
     def serialize(self):
         return {
@@ -61,7 +61,7 @@ class GestorCitas(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     servicio_id = db.Column(db.Integer, db.ForeignKey('servicios.id'))
     fecha = db.Column(db.DateTime)
-    user = db.relationship('User', backref=('gestor_citas'))
+    users = db.relationship('Users', backref=('gestor_citas'))
     servicio = db.relationship('Servicio', backref =('gestor_citas'), lazy=True )
 
     def __repr__(self):
