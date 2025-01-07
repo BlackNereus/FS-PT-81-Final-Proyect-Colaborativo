@@ -64,6 +64,7 @@ class GestorCitas(db.Model):
     users = db.relationship('Users', backref=('gestor_citas'))
     servicio = db.relationship('Servicio', backref =('gestor_citas'), lazy=True )
 
+
     def __repr__(self):
         return f'<GestorCitas {self.id}>'
 
