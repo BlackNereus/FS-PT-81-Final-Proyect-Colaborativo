@@ -9,7 +9,7 @@ class Users(db.Model):
     password = db.Column(db.String(80), nullable=False)
     name = db.Column(db.String(100))
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'))  # Corrección aquí
+    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id')) 
     
 
     def __repr__(self):
@@ -63,14 +63,14 @@ class GestorCitas(db.Model):
     __tablename__ = 'gestor_citas'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'))  # Corrección aquí
+    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id')) 
     servicio_id = db.Column(db.Integer, db.ForeignKey('servicios.id'))
     fecha = db.Column(db.DateTime)
 
     # Relaciones
     user = db.relationship('Users', backref='gestor_citas', lazy=True)
     servicio = db.relationship('Servicio', backref='gestor_citas', lazy=True)
-    empresa = db.relationship('Empresa', backref='gestor_citas', lazy=True)  # Relación correcta
+    empresa = db.relationship('Empresa', backref='gestor_citas', lazy=True)  
 
     def __repr__(self):
         return f'<GestorCitas {self.id}>'
