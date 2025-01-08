@@ -8,9 +8,8 @@ class Users(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     name = db.Column(db.String(100))
-    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'))
-    empresa = db.relationship('Empresa', backref=('users'), lazy=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    users = db.relationship('GestorCitas', backref=('users') )
 
     def __repr__(self):
         return f'<Users {self.email}>'
@@ -26,7 +25,7 @@ class Empresa (db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    servicios = db.relationship('Servicio', backref='empresa', lazy=True)
+    
 
     def __repr__(self):
         return f'<Empresa{self.email}>'
@@ -41,17 +40,16 @@ class Empresa (db.Model):
 class Servicio(db.Model):
     __tablename__ = 'servicios'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'))
+    servicio = db.Column(db.String(100))
     
 
     def __repr__(self):
-        return f'<Servicio {self.name}>'
+        return f'<Servicio {self.servicio}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name,
+            "name": self.servicio,
             "empresa_id": self.empresa_id,
         }
 
@@ -59,9 +57,10 @@ class GestorCitas(db.Model):
     __tablename__ = 'gestor_citas'
     id = db.Column(db.Integer, primary_key =True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    empresa_id = db.Column(db.Integer, db.ForeignKey('empresa.id'))
     servicio_id = db.Column(db.Integer, db.ForeignKey('servicios.id'))
     fecha = db.Column(db.DateTime)
-    users = db.relationship('Users', backref=('gestor_citas'))
+    users = db.relationship('Users', backref=('gestor_citas') )
     servicio = db.relationship('Servicio', backref =('gestor_citas'), lazy=True )
 
 
