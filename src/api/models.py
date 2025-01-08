@@ -6,10 +6,11 @@ class Users(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
+    password = db.Column(db.String(80), nullable=False)
     name = db.Column(db.String(100))
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    users = db.relationship('GestorCitas', backref=('users') )
+    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'))  # Corrección aquí
+    
 
     def __repr__(self):
         return f'<Users {self.email}>'
@@ -18,30 +19,34 @@ class Users(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            # do not serialize the password, its a security breach
+            # do not serialize the password, it's a security breach
         }
-class Empresa (db.Model):
+
+class Empresa(db.Model):
     __tablename__ = 'empresas'
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
-    
+    servicio_id = db.Column(db.Integer, db.ForeignKey('servicios.id'))
+    address = db.Column(db.String(200))
+    city = db.Column(db.String(200))
+    contact = db.Column(db.String(120))
 
     def __repr__(self):
-        return f'<Empresa{self.email}>'
+        return f'<Empresa {self.id}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.email,
+            "address": self.address,
+            "city": self.city,
+            "contact": self.contact,
         }
-
 
 class Servicio(db.Model):
     __tablename__ = 'servicios'
     id = db.Column(db.Integer, primary_key=True)
     servicio = db.Column(db.String(100))
-    
+    descripcion = db.Column(db.String(250))
+    precio = db.Column(db.Integer)
 
     def __repr__(self):
         return f'<Servicio {self.servicio}>'
@@ -50,19 +55,22 @@ class Servicio(db.Model):
         return {
             "id": self.id,
             "name": self.servicio,
-            "empresa_id": self.empresa_id,
+            "descripcion": self.descripcion,
+            "precio": self.precio,
         }
 
 class GestorCitas(db.Model):
     __tablename__ = 'gestor_citas'
-    id = db.Column(db.Integer, primary_key =True)
+    id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    empresa_id = db.Column(db.Integer, db.ForeignKey('empresa.id'))
+    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'))  # Corrección aquí
     servicio_id = db.Column(db.Integer, db.ForeignKey('servicios.id'))
     fecha = db.Column(db.DateTime)
-    users = db.relationship('Users', backref=('gestor_citas') )
-    servicio = db.relationship('Servicio', backref =('gestor_citas'), lazy=True )
 
+    # Relaciones
+    user = db.relationship('Users', backref='gestor_citas', lazy=True)
+    servicio = db.relationship('Servicio', backref='gestor_citas', lazy=True)
+    empresa = db.relationship('Empresa', backref='gestor_citas', lazy=True)  # Relación correcta
 
     def __repr__(self):
         return f'<GestorCitas {self.id}>'
@@ -73,4 +81,5 @@ class GestorCitas(db.Model):
             "user_id": self.user_id,
             "servicio_id": self.servicio_id,
         }
+
         
