@@ -28,7 +28,8 @@ class Empresa(db.Model):
     servicio_id = db.Column(db.Integer, db.ForeignKey('servicios.id'))
     address = db.Column(db.String(200))
     city = db.Column(db.String(200))
-    contact = db.Column(db.String(120))
+    email = db.Column(db.String(120))
+    
 
     def __repr__(self):
         return f'<Empresa {self.id}>'
@@ -38,23 +39,23 @@ class Empresa(db.Model):
             "id": self.id,
             "address": self.address,
             "city": self.city,
-            "contact": self.contact,
+            "email": self.email,
         }
 
 class Servicio(db.Model):
     __tablename__ = 'servicios'
     id = db.Column(db.Integer, primary_key=True)
-    servicio = db.Column(db.String(100))
+    nombre_servicio = db.Column(db.String(100))
     descripcion = db.Column(db.String(250))
     precio = db.Column(db.Integer)
 
     def __repr__(self):
-        return f'<Servicio {self.servicio}>'
+        return f'<nombre_servicio {self.nombre_servicio}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.servicio,
+            "nombre_servicio": self.nombre_servicio,
             "descripcion": self.descripcion,
             "precio": self.precio,
         }
@@ -78,8 +79,7 @@ class GestorCitas(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "user_id": self.user_id,
-            "servicio_id": self.servicio_id,
+            "fecha": self.fecha.isoformat()
         }
 
         

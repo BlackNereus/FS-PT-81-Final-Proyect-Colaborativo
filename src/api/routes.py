@@ -14,9 +14,9 @@ CORS(api)
 
 @api.route('/users', methods=['GET'])
 def get_users():
-    data = Users.query.all()
-    users = [users.serialize() for users in data]
-    return jsonify({"msg": "OK", "data":users}), 200
+   data = Users.query.all()
+   users = [users.serialize() for users in data]
+   return jsonify ({"msg":"Ok", "data":users}), 200
 
 @api.route('/users/<int:id>', methods=['GET'])
 def one_user(id):
@@ -82,14 +82,16 @@ def one_company(id):
 
 @api.route('/company', methods=['POST'])
 def create_company():
+   address = request.json.get('address', None)
+   city = request.json.get('city', None)
    email = request.json.get('email', None)
-   password = request.json.get('password', None)
-   if not email or not password :
+   
+   if not address or not city or not email :
       return jsonify ({"msg":"All the fields are required"}), 400
    check = Empresa.query.filter_by(email=email).first()
    if check:
-      return jsonify ({"msg":"User already exist, please login"}), 400
-   new_company = Users(email=email, password=password, is_active=True)
+      return jsonify ({"msg":"company already exists, please login"}), 400
+   new_company = Empresa(address=address, city=city, email=email)
    db.session.add(new_company)
    db.session.commit()
    return jsonify ({"msg":"OK", "data": new_company.serialize()})
@@ -110,22 +112,76 @@ def update_company(id):
     return jsonify ({"msg":"no company found with id:" + str(id)}), 404
    data = request.json
    email = data.get('email')
-   password  =data.get('password')
-   if not email and not password:
-      return jsonify({"msg": "at least one field ( email or password ) must be provided"}), 400
+   address = data.get('address')
+   city = data.get('city')
+   if not email:
+      return jsonify({"msg": "at least one field must be provided"}), 400
    if email:
       company.email = email
-   if password:
-      company.password = password
+   if address:
+      company.address = address
+   if city:
+      company.city = city
       db.session.commit()
-      return jsonify ({"msg": "company with id {id} updated successfully", "company": company.serialize()}), 200
+      return jsonify ({"msg": "company with id updated successfully", "company": company.serialize()}), 200
 
 @api.route('/service', methods=['GET'])
 def get_services():
    data = Servicio.query.all()
    servicio = [servicio.serialize() for servicio in data]
    return jsonify({"msg":"Ok", "data":servicio}), 200
-   
+
+@api.route('/service/<int:id>', methods=['GET'])
+def one_servicio(id):
+   servicio = Servicio.query.get(id)
+   if servicio is None:
+        return jsonify({"msg": "No service found with id, the data base might be empty"}), 404
+   print(servicio)
+   return jsonify({"msg": "one user with id:" + str(id), "servicio":servicio.serialize()}), 200
+
+@api.route('/service', methods=['POST'])
+def create_service():
+   servicio = request.json.get('servicio', None)
+   descripcion = request.json.get('descripcion', None)
+   precio = request.json.get('precio', None)
+   if not servicio or not descripcion or not precio:
+      return jsonify ({"msg":"All fields is required"}), 400
+   check = Servicio.query.filter_by(servicio=servicio).first()
+   if check:
+      return jsonify ({"msg":"Service already exist, please login"}), 400
+   new_service = Servicio(servicio=servicio, descripcion=descripcion, precio=precio)
+   db.session.add(new_service)
+   db.session.commit()
+   return jsonify({"msg": "OK", "data": new_service.serialize()}), 201
+
+@api.route('/service/<int:id>', methods=['DELETE'])
+def delete_service(id):
+   servicio = Servicio.query.get(id)
+   if not servicio:
+      return jsonify({"msg":"No service found with id:" + str(id)}), 404
+   db.session.delete(servicio)
+   db.session.commit()
+   return jsonify({"msg": "deleted with id:" + str(id)}), 200
+
+@api.route('/service/<int:id>', methods=['PUT'])
+def update_service(id):
+   servicio = Servicio.query.get(id)
+   if servicio is None:
+    return jsonify ({"msg":"no company found with id:" + str(id)}), 404
+   data = request.json
+   nombre_servicio = data.get('nombre_servicio')
+   descripcion = data.get('descripcion')
+   precio = data.get('precio')
+   if not servicio:
+      return jsonify({"msg": "at least one field must be provided"}), 400
+   if servicio:
+      servicio.nombre_servicio = nombre_servicio
+   if descripcion:
+      servicio.descripcion = descripcion
+   if precio:
+      servicio.precio = precio
+      db.session.commit()
+      return jsonify ({"msg": "company with id updated successfully", "company": servicio.serialize()}), 200
 
 
 @api.route('/citas', methods=['GET'])
@@ -133,6 +189,14 @@ def get_cita():
    data = GestorCitas.query.all()
    citas = [citas.serialize() for citas in data]
    return jsonify ({"msg":"Ok", "data":citas}), 200
+
+@api.route('/citas/<int:id>', methods=['GET'])
+def one_cita(id):
+   citas = GestorCitas.query.get(id)
+   if citas is None:
+        return jsonify({"msg": "No user found with id {id}, the data base might be empty"}), 404
+   print(citas)
+   return jsonify({"msg": "one user with id:" + str(id), "user":citas.serialize()}), 200
 
 @api.route('/citas', methods=['POST'])
 def create_cita():
@@ -164,13 +228,11 @@ def update_cita(id):
     return jsonify ({"msg":"no date found with id:" + str(id)}), 404
    data = request.json
    fecha = data.get('fecha')
-   users = data.get('users')
-   if not fecha and not users:
+   if not fecha:
       return jsonify({"msg": "at least one field ( email or password ) must be provided"}), 400
    if fecha:
-      cita.email = fecha
-   if users:
-      cita.password = users
+      cita.fecha = fecha
+
       db.session.commit()
       return jsonify ({"msg": "company with id {id} updated successfully", "company": cita.serialize()}), 200
 
