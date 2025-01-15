@@ -1,0 +1,10 @@
+.text-signIn {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.container {
+    background: #2C5364;
+    padding: 1rem;
+}
