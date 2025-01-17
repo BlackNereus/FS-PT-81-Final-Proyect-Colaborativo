@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export const Navbar = () => {
 	return (
+design_calendarNav
 		<nav class="navbar navbar-expand-lg bg-body-tertiary">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#">Navbar</a>
@@ -25,7 +27,17 @@ export const Navbar = () => {
 						</li>
 					</ul>
 				</div>
+
+
+		<nav class="navbar d-flex">
+			<div class="container">
+				<button class="btn-green">PRUEBA</button>
+				<a className="nav-link active" style={{ color: "white" }} aria-current="#" href="#">Precio</a>
+				<a className="nav-link" style={{ color: "white" }} href="#">Funcionabilidades</a>
+				<a className="nav-link" style={{ color: "white" }} href="#">Contacto</a>
+				<a className="nav-link" style={{ color: "white" }} href="#">Noticias</a>
+Develop
 			</div>
 		</nav>
-	);
-};
+	)
+}

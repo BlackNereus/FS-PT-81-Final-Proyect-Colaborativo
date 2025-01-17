@@ -42,7 +42,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try{
 
-					const resp = await fetch('https://verbose-guide-wr9v5p7rvqvgf566r-3001.app.github.dev/api/register',{
+					const resp = await fetch('https://verbose-guide-wr9v5p7rvqvgf566r-3001.app.github.dev/api/',{
 						method: 'POST',
 						headers: {
 							'Content-Type' : 'application/json'
