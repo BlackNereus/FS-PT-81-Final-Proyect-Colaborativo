@@ -1,117 +1,116 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			auth: localStorage.getItem('token') || false,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			users: [],
+			companies: [],
+			services: [],
+			date: []
+
 		},
 		actions: {
-
-			getUserData: async () =>{try{
-
-				const resp = await fetch('https://verbose-guide-wr9v5p7rvqvgf566r-3001.app.github.dev/api/protected',{
-					method: 'GET',
-					headers: {
-						'Content-Type' : 'application/json',
-						'Authorization': `Bearer ${localStorage.getItem('token')}`
-					},
-					body: JSON.stringify(formData)
-				})
-				if(!resp.ok) throw new Error('Error registering')
-				const data = await resp.json()
-				console.log(data)
-				localStorage.setItem('token', data.token)
-				setStore({user: data.user})
-			}
-			catch (error){
-				console.error(error)
-			}
-		},
-			register: async formData => {
-
-				try{
-
-					const resp = await fetch('https://verbose-guide-wr9v5p7rvqvgf566r-3001.app.github.dev/api/register',{
-						method: 'POST',
-						headers: {
-							'Content-Type' : 'application/json'
-						},
-						body: JSON.stringify(formData)
-					})
-					if(!resp.ok) throw new Error('Error registering')
-					const data = await resp.json()
-					console.log(data)
-					localStorage.setItem('token', data.token)
-					setStore({auth: true, token: data.token})
-				}
-				catch (error){
-					console.error(error)
+			getUsers: async () => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/api/users')
+					if (!response.ok) throw new Error("Error obteniendo usuarios");
+					const data = await response.json();
+					setStore({ users: data.data });
+				} catch (error) {
+					console.error("Error obteniendo usuarios:", error);
 				}
 			},
 
-			login: async formData => {
-
-				try{
-					const resp = await fetch('https://verbose-guide-wr9v5p7rvqvgf566r-3001.app.github.dev/api/login',{
-						method: 'POST',
-						headers: {
-							'Content-Type' : 'application/json'
-						},
-						body: JSON.stringify(formData)
-					})
-					if(!resp.ok) throw new Error('Error registering')
-					const data = await resp.json()
-					console.log(data)
-					localStorage.setItem('token', data.token)
-					setStore({auth: true, token: data.token})
+			getUserId: async (id) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/api/users/' + id)
+					if (!response.ok) throw new Error("Error obteniendo el id del Usuario");
+					const data = await response.json();
+					return data.user;
+				} catch (error) {
+					console.error("Error obteniendo el ID del usuario:", error);
 				}
-				catch (error){
-					console.error(error)
+			},
+			createUser: async (email, password) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/api/users', {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({ email, password }),
+					});
+					if (!response.ok) throw new Error("Error creando al usuario");
+					const data = await response.json;
+					const store = getStore();
+					setStore({ users: [...store.users, data.data] });
+				} catch (error) {
+					console.error("Error creando usuario:", error);
+				}
+			},
+			deleteUser: async (id) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/api/users/' + id, {
+						method: "DELETE"
+					});
+					if (!response.ok) throw new Error("Error borrando al usuario");
+					const store = getStore();
+					setStore({ users: store.users.filter((user) => user.id !== id) });
+				} catch (error) {
+					console.error("Error Borrando al usuario:", error);
+
+				}
+			},
+			updateUser: async (id, email, password) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/api/users/' + id, {
+						method: "PUT",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({ email, password }),
+					});
+					if (!response.ok) throw new Error("Error actualizando al usuario");
+					const data = await response.json();
+					const store = getStore();
+					setStore({
+						users: store.user.map((user) => user.id === id ? { ...user, ...data.user } : user),
+					});
+				} catch (error) {
+					console.error("error actualizando al usuario");
 				}
 			},
 
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-
-			getMessage: async () => {
-				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
+			getCompany: async () => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/api/company')
+					if (!response.ok) throw new Error("Error obteniendo usuarios");
+					const data = await response.json();
+					setStore({ company: data.data });
+				} catch (error) {
+					console.error("Error obteniendo compañia:", error);
 				}
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
+			getCompanyId: async (id) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/api/comany/' + id)
+					if (!response.ok) throw new Error("Error obteniendo el id de la compañia");
+					const data = await response.json();
+					return data.user;
+				} catch (error) {
+					console.error("Error obteniendo el ID de la compañia:", error);
+				}
+			},
+			CreateCompany: async (address, city, email) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/api/company', {
+						method: "POST",
+						body: JSON.stringify(company),
+						headers: { "Content-Type": "application/json" },
+						body: ({address, city, email}),
+					});
+					if (!response.ok) throw new Error("Error obteniendo usuarios");
+					const data = await response.json();
+					setStore({ company: data.data }),
+				} catch (error) {
+					
+				}
+			},
 		}
 	};
 };
