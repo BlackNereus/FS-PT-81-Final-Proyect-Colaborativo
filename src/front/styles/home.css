@@ -1,0 +1,208 @@
+/*REGISTER*/
+.custom-register-form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 3px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+  }
+  
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+  }
+  
+  
+  .required {
+    color: red;
+    font-weight: bold;
+  }
+  
+  
+  .custom-register-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #000; 
+    color: #fff; 
+    border: none;
+    border-radius: 25px; 
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .custom-register-button:hover {
+    background-color: #333; 
+  }
+  
+ 
+  .form-footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .form-footer a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .form-footer a:hover {
+    text-decoration: underline;
+  }
+  
+  /*LOGIN*/ 
+ 
+  body {
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+  }
+
+  .form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 2px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 5px;
+  }
+  
+  .input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+  }
+  
+  .required {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .button {
+    width: 100%;
+    padding: 12px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #333;
+  }
+  
+  .footer-login {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .link {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+/* NAVBAR */
+
+  .navbar {
+    background-color: #2C5364;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+  }
+  
+ 
+  .btn-green {
+    background-color: #28a745; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .btn-green:hover {
+    background-color: #218838; 
+    transform: scale(1.05);
+  }
+.nav-link {
+  color: white;
+  display: flex;
+}
+
+/*FOOTER*/
+
+.footer {
+  background-color: #2C5364;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: white;
+}
+
+.container-footer {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  gap:20px; 
+}
+
+.nav-link {
+  text-decoration: none; 
+  font-size: 16px; 
+}
+.nav-link:hover {
+  color: white; 
+}

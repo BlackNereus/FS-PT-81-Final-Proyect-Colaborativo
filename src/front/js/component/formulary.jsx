@@ -5,66 +5,81 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export const Formulary = () => {
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        password: "",
+      name: "",
+      lastname: "",
+      email: "",
+      password: "",
     });
-
+  
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
     };
-
+  
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("User registered:", formData);
-
+      e.preventDefault();
+      console.log("User registered:", formData);
     };
-
+  
     return (
-        <div className="d-flex justify-content-center">
-            <form className="register-form border-10px" onSubmit={handleSubmit}>
-                <h2 className="register-title">Registro de Usuario</h2>
-                <div className="form-group">
-                    <label htmlFor="name">Nombre</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Contraseña</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <button type="submit" className="register-button btn btn-primary gray" style={{color:"black"}}>
-                    Registrar
-                </button>
-                <a className="black "href="">¿Ya tienes una cuenta? Accede aqui</a>
-            </form>
+      <form className="custom-register-form" onSubmit={handleSubmit}>
+        <h1 className="justify-content-center">Registro</h1>
+        <div className="form-group">
+          <label htmlFor="name">Nombre</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
         </div>
+        <div className="form-group">
+          <label htmlFor="lastname">Apellidos</label>
+          <input
+            type="text"
+            id="lastname"
+            name="lastname"
+            value={formData.lastname}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">
+            Email <span className="required">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">
+            Contraseña <span className="required">*</span>
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit" className="custom-register-button">
+          Registrarme
+        </button>
+        <p className="form-footer">
+          ¿Ya tienes cuenta? <a href="/login">Accede aquí</a>
+        </p>
+      </form>
     );
-};
-
-export default Formulary;
+  };
+  
+  export default Formulary;

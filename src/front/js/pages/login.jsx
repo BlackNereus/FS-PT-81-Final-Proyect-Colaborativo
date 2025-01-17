@@ -1,9 +1,9 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Formulary } from "../component/formulary.jsx";
+import { Formulario } from "../component/formulario.jsx";
 
 export const Login = () => {
     return (
-         <Formulary/>
+         <Formulario/>
     )
 }
