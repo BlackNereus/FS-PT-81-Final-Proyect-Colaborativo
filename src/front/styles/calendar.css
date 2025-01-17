@@ -155,7 +155,7 @@
     top: 50px; /* Establece la distancia desde la parte superior del calendario */
     left: 50%;
     transform: translateX(-50%);
-    background-color: white; 
+    background-color: white;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
