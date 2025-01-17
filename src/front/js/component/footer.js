@@ -1,10 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
-		<p>
-			Made with <i className="fa fa-heart text-danger" /> by{" "}
-			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
-		</p>
+	<footer className="navbar">
+		<div class="container">
+				<a className="nav-link active" style={{ color: "white" }} aria-current="#" href="#">Precio</a>
+				<a className="nav-link" style={{ color: "white" }} href="#">Informacion</a>
+				<a className="nav-link" style={{ color: "white" }} href="#">Contacto</a>
+				<a className="nav-link" style={{ color: "white" }} href="#">Trabaja con nosotros</a>
+			</div>
 	</footer>
 );

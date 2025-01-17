@@ -5,6 +5,8 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Users, Empresa, GestorCitas, Servicio
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from werkzeug.security import generate_password_hash, check_password_hash
 
 api = Blueprint('api', __name__)
 
@@ -237,5 +239,47 @@ def update_cita(id):
       return jsonify ({"msg": "company with id {id} updated successfully", "company": cita.serialize()}), 200
 
 
-if __name__ == '__main__':
-  api.run(host='0.0.0.0', port=3245, debug=True)
+
+@api.route('/register', methods=['POST'])
+def register():
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+
+    if not email or not password:
+        return jsonify({"msg": "missing data"}), 400
+    exist = Users.query.filter_by(email=email).first()
+    if exist:
+        return jsonify({"msg": "email taken"}), 400
+    hashed_password = generate_password_hash(password)
+    new_user = Users(email=email, password=hashed_password, is_active=True)
+    db.session.add(new_user)
+    db.session.commit()
+    token = create_access_token(identity=str(new_user.id))
+    return jsonify({"msg": 'ok', 'token': token})
+
+@api.route('/login', methods=['POST'])
+def login():
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+
+    if not email or not password:
+        return jsonify({"msg": "missing data"}), 400
+    exist = Users.query.filter_by(email=email).first()
+    if exist:
+        return jsonify({"msg": "no user found"}), 404
+    
+
+    hashed_password = generate_password_hash(password)
+    if check_password_hash(exist.password, password):
+        return jsonify({"msg":"email/password wrong"})
+
+    token = create_access_token(identity=exist.id)
+    return jsonify({"msg": 'ok', 'token': token})
+
+@api.route('/protected', methods=['GET'])
+@jwt_required()
+def protected():
+    identity = get_jwt_identity()
+    print('user identity->', identity)
+    user = Users.query.get(id)
+    return jsonify({"msg":"OK", "user": user.serialize()})
