@@ -1,4 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
+git branch -andfrom flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
