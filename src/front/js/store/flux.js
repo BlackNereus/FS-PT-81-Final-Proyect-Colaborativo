@@ -96,23 +96,203 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Error obteniendo el ID de la compañia:", error);
 				}
 			},
-			CreateCompany: async (address, city, email) => {
+			CreateCompany: async (company) => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + '/api/company', {
 						method: "POST",
-						body: JSON.stringify(company),
 						headers: { "Content-Type": "application/json" },
-						body: ({address, city, email}),
+						body: JSON.stringify(company),
+					
 					});
 					if (!response.ok) throw new Error("Error obteniendo usuarios");
 					const data = await response.json();
-					setStore({ company: data.data }),
+					setStore({ companies:[...store.companies, data.data] });
 				} catch (error) {
-					
+					console.error("Error creando la compañia:", error);
 				}
 			},
-		}
-	};
+
+			updateCompany: async (id, updatedData) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/api/comany/' + id, {
+						method: "PUT",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify(updatedData),
+					});
+					if (!response.ok) throw new Error("Error actualizando la compañia");
+	
+					const data = await response.json();
+					const store = getStore();
+					const updatedCompanies = store.companies.map((company) =>
+						company.id === id ? data.company : company
+					);
+					setStore({ companies: updatedCompanies });
+				} catch (error) {
+					console.error("Error actualizando la compañia:", error);
+				}
+			},
+			deleteCompany: async (id) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/api/comany/' + id, {
+						method: "DELETE",
+					});
+					if (!response.ok) throw new Error("Error borrando la compañia");
+	
+					const store = getStore();
+					const updatedCompanies = store.companies.filter((company) => company.id !== id);
+					setStore({ companies: updatedCompanies });
+				} catch (error) {
+					console.error("Error borrando la compañia:", error);
+				}
+			},
+
+			getServices: async () => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL+/api/service);
+					if (!response.ok) throw new Error("Error fetching services");
+	
+					const data = await response.json();
+					setStore({ services: data.data }); 
+				} catch (error) {
+					console.error("Error fetching services:", error);
+				}
+			},
+	
+			getServiceById: async (id) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL +/api/service/+ id);
+					if (!response.ok) throw new Error("Error fetching service");
+	
+					const data = await response.json();
+					setStore({ selectedService: data.servicio });
+				} catch (error) {
+					console.error("Error fetching service by ID:", error);
+				}
+			},
+	
+			createService: async (service) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL+/api/service, {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify(service),
+					});
+					if (!response.ok) throw new Error("Error creating service");
+	
+					const data = await response.json();
+					const store = getStore();
+					setStore({ services: [...store.services, data.data] }); 
+				} catch (error) {
+					console.error("Error creating service:", error);
+				}
+			},
+	
+			updateService: async (id, updatedData) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL+/api/service/+id, {
+						method: "PUT",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify(updatedData),
+					});
+					if (!response.ok) throw new Error("Error updating service");
+	
+					const data = await response.json();
+					const store = getStore();
+					const updatedServices = store.services.map((service) =>
+						service.id === id ? data.service : service
+					);
+					setStore({ services: updatedServices });
+				} catch (error) {
+					console.error("Error updating service:", error);
+				}
+			},
+	
+			deleteService: async (id) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL+/api/service/+id, {
+						method: "DELETE",
+					});
+					if (!response.ok) throw new Error("Error deleting service");
+					const store = getStore();
+					const updatedServices = store.services.filter((service) => service.id !== id);
+					setStore({ services: updatedServices });
+				} catch (error) {
+					console.error("Error deleting service:", error);
+				}
+			},
+		},
+		getCitas: async () => {
+            try {
+                const response = await fetch(process.env.BACKEND_URL+/api/citas);
+                if (!response.ok) throw new Error("Error obteniendo las citas");
+                const data = await response.json();
+                setStore({ citas: data.data });
+            } catch (error) {
+                console.error("Error obteniendo las citas:", error);
+            }
+        },
+
+        getCitaById: async (id) => {
+            try {
+                const response = await fetch(process.env.BACKEND_URL+/api/citas/+id);
+                if (!response.ok) throw new Error("Error obteniendo la cita");
+                const data = await response.json();
+                setStore({ selectedCita: data.user }); 
+            } catch (error) {
+                console.error("Error obteniendo la cita por ID:", error);
+            }
+        },
+
+        createCita: async (cita) => {
+            try {
+                const response = await fetch(process.env.BACKEND_URL+/api/citas, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(cita),
+                });
+                if (!response.ok) throw new Error("Error creando la cita");
+                const data = await response.json();
+                const store = getStore();
+                setStore({ citas: [...store.citas, data.data] }); 
+            } catch (error) {
+                console.error("Error creando la cita:", error);
+            }
+        },
+
+        updateCita: async (id, updatedData) => {
+            try {
+                const response = await fetch(process.env.BACKEND_URL+/api/citas/+id, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(updatedData),
+                });
+                if (!response.ok) throw new Error("Error modificando la cita");
+                const data = await response.json();
+                const store = getStore();
+                const updatedCitas = store.citas.map((cita) =>
+                    cita.id === id ? data.cita : cita
+                );
+                setStore({ citas: updatedCitas });
+            } catch (error) {
+                console.error("Error modificando la cita:", error);
+            }
+        },
+
+        deleteCita: async (id) => {
+            try {
+                const response = await fetch(process.env.BACKEND_URL+/api/citas/+id, {
+                    method: "DELETE",
+                });
+                if (!response.ok) throw new Error("Error borrando la cita");
+                const store = getStore();
+                const updatedCitas = store.citas.filter((cita) => cita.id !== id);
+                setStore({ citas: updatedCitas });
+            } catch (error) {
+                console.error("Error borrando la cita:", error);
+            }
+        },
+    }
 };
+
 
 export default getState;
