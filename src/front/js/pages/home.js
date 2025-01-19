@@ -16,10 +16,10 @@ export const Home = () => {
 				</div>
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="https://www.peluker.com/blog/wp-content/uploads/2024/04/image106innovacion-en-diseno-mobiliario-de-peluqueria-de-alta-gama.jpg" class="d-block w-100" alt="..."/>
+						<img src="https://wallpapers.com/images/high/hd-medical-health-icon-with-nurse-v1txjiifhv3bssoo.webp" class="d-block w-100" alt="..."/>
 							<div class="carousel-caption d-none d-md-block">
-								<h2>Bienvenido a tu nuevo estilo</h2>
-								<p>Tu imagen es nuestra responsabilidad</p>
+								<h1>BIENVENIDO A CLINICA CENTRO</h1>
+								<h3>Tu salud y la de tu familia es nuetra resposibilidad</h3>
 							</div>
 					</div>
 					<div class="carousel-item">
