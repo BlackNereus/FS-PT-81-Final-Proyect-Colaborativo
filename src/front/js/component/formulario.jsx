@@ -22,29 +22,29 @@ export const Formulario = () => {
       <form className="form" onSubmit={handleSubmit}>
         <h1>Inicio de sesion</h1>
         <div className="form-group">
-          <label className="label" htmlFor="name">
-            Nombre <span className="required">*</span>
+          <label className="label" htmlFor="email">
+            Email <span className="required">*</span>
           </label>
           <input
             className="input"
             type="text"
             id="name"
             name="name"
-            value={formData.name}
+            value={formData.email}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label className="label" htmlFor="email">
-            Email <span className="required">*</span>
+          <label className="label" htmlFor="password">
+            Password <span className="required">*</span>
           </label>
           <input
             className="input"
             type="email"
             id="email"
             name="email"
-            value={formData.email}
+            value={formData.password}
             onChange={handleChange}
             required
           />
