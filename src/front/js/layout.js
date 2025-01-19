@@ -12,6 +12,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Registro } from "./pages/registro.jsx";
 import { Login } from "./pages/login.jsx";
+import { Cita } from "./pages/cita.jsx";
 
 
 
@@ -32,6 +33,7 @@ const Layout = () => {
                         <Route element={<Single />} path="/single/:theid" />                    
                         <Route element={<Registro/>} path="/registro"/>
                         <Route element={<Login/>} path="/login"/>
+                        <Route element={<Cita/>} path="/cita"/>
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
