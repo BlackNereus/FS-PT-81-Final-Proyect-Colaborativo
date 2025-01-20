@@ -53,16 +53,16 @@ export const Home = () => {
 						<div className="card-body cardbodymedico">
 							<h1 className="card-title">Dr. Ivan Herrera</h1>
 							<h3 className="card-text">Médico Cirujano</h3>
-							<h3 className="card-text">Especialidad en Cardiología</h3>
-							<a href="#" className="btn btn-lg btn-success">AGENDAR CITA</a>
+							<h3 className="card-text">Cardiología</h3>
+							<a href="#" className="btn btn-lg btn-danger">AGENDAR CITA</a>
 						</div>
 					</div>
 					<div className="card text-bg-primary mb-3 cardmedico col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
 						<div className="card-body cardbodymedico">
 							<h1 className="card-title">Dr. Ivan Herrera</h1>
 							<h3 className="card-text">Médico Cirujano</h3>
-							<h3 className="card-text">Especialidad en Cardiología</h3>
-							<a href="#" className="btn btn-lg btn-success">AGENDAR CITA</a>
+							<h3 className="card-text">Cardiología</h3>
+							<a href="#" className="btn btn-lg btn-danger">AGENDAR CITA</a>
 						</div>
 					</div>
 					<div class="card text-bg-light col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
@@ -71,7 +71,7 @@ export const Home = () => {
 							<div className="btn btn-primary ">
 								<h1 className="card-text cardtextimg">Dr. Ivan Herrera</h1>
 								<h3 className="card-text cardtextimg">Médico Cirujano</h3>
-								<h3 className="card-text cardtextimg">Especialidad en Cardiología</h3>
+								<h3 className="card-text cardtextimg">Cardiología</h3>
 							</div>
 							<a href="#" className="btn btn-lg btn-primary cardtextimg">AGENDAR CITA</a>
 						</div>
@@ -82,7 +82,7 @@ export const Home = () => {
 							<div className="btn btn-primary ">
 								<h1 className="card-text cardtextimg">Dr. Ivan Herrera</h1>
 								<h3 className="card-text cardtextimg">Médico Cirujano</h3>
-								<h3 className="card-text cardtextimg">Especialidad en Cardiología</h3>
+								<h3 className="card-text cardtextimg">Cardiología</h3>
 							</div>
 							<a href="#" className="btn btn-lg btn-primary cardtextimg">AGENDAR CITA</a>
 						</div>
