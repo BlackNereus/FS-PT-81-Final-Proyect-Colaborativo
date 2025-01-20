@@ -171,3 +171,144 @@
     background-color: var(--color-hover);
   }
   
+
+  .calendar-button {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .button-submit {
+    background-color: #2C5364;
+    color: white;
+    border: 2px solid #2C5364;
+    border-radius: 25px;
+    padding: 12px 24px;
+  }
+  
+  .button-submit:hover {
+    background-color: white;
+    color: rgb(20, 82, 31);
+    border: 2px solid rgb(20, 82, 31);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .button-cancel {
+    background-color: #2C5364;
+    color: white;
+    border: 2px solid #2C5364;
+    border-radius: 25px;
+    padding: 12px 24px;
+  }
+  
+  .button-cancel:hover {
+    background-color: white;
+    color: #bb352b;
+    border: 2px solid #bb352b;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5);
+  }
+  
+/* Estilos para el contenedor del footer */
+.calendar-footer {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Estilos para la fecha seleccionada */
+.selected-date {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* Contenedor del selector de hora y minutos */
+.time-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Estilos para el label de hora */
+.time-selector label {
+  font-size: 1rem;
+  color: #2C5364;
+  font-weight: 500;
+}
+
+/* Estilos para los selectores de hora y minuto */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: 2px solid #2C5364;
+  background-color: #fff;
+  color: #2C5364;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 80px;
+  font-family: 'Roboto', sans-serif;
+}
+
+select:hover {
+  border-color: #1e3c5f;
+  background-color: #f7fafb;
+}
+
+select:focus {
+  outline: none;
+  border-color: #2C5364;
+  box-shadow: 0 0 0 4px rgba(44, 83, 100, 0.2);
+}
+
+/* Estilos para la separación entre los selectores de hora y minuto */
+.time-selector select:nth-child(2) {
+  margin-left: 5px;
+}
+
+/* Opciones del select */
+select option {
+  padding: 10px;
+  background-color: #fff;
+  color: #2C5364;
+}
+
+/* Estilo para el contenedor del selector de hora */
+.time-selector select {
+  width: 70px;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  border: 2px solid #2C5364;
+  transition: all 0.3s ease;
+}
+
+/* Efecto hover */
+select:hover {
+  border-color: #1e3c5f;
+  background-color: #f7fafb;
+}
+
+/* Efecto focus */
+select:focus {
+  border-color: #2C5364;
+  box-shadow: 0 0 0 4px rgba(44, 83, 100, 0.2);
+}
+
+  
