@@ -211,6 +211,7 @@
 .cardmedico{
  padding: none;
 }
+
 .cardbodymedico{
   display: flex;
   flex-direction: column;
@@ -220,6 +221,7 @@
 .textomedico{
   margin: 0;
 }
+
 .cardtextimg{
   color: white;
 }
