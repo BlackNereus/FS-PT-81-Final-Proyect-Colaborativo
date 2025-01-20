@@ -210,7 +210,6 @@
 /* Estilos de Home.js */
 .cardmedico{
  padding: none;
- max-width: 100%;
 }
 .cardbodymedico{
   display: flex;
@@ -220,4 +219,7 @@
   } 
 .textomedico{
   margin: 0;
+}
+.cardtextimg{
+  color: white;
 }

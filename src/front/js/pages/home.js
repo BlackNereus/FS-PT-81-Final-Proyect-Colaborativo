@@ -47,39 +47,57 @@ export const Home = () => {
 					<span className="visually-hidden">Next</span>
 				</button>
 			</div>
-
-			<div className="container-fluid row d-flex justify-content-around gap-1 p-1">
-				<div className="card text-bg-primary mb-3 cardmedico col-sm-12 col-md-12 col-lg-6 col-xl-4 col-xxl-4">
-					<div className="card-body cardbodymedico">
-						<h1 className="card-title">Dr. Ivan Herrera</h1>
-						<h3 className="card-text">Médico Cirujano</h3>
-						<h3 className="card-text">Especialidad en Cardiología</h3>
-						<a href="#" className="btn btn-lg btn-success">AGENDAR CITA</a>
+			<div className="container">
+				<div className="row d-flex justify-content-around gap-1 p-1">
+					<div className="card text-bg-primary mb-3 cardmedico col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+						<div className="card-body cardbodymedico">
+							<h1 className="card-title">Dr. Ivan Herrera</h1>
+							<h3 className="card-text">Médico Cirujano</h3>
+							<h3 className="card-text">Especialidad en Cardiología</h3>
+							<a href="#" className="btn btn-lg btn-success">AGENDAR CITA</a>
+						</div>
+					</div>
+					<div className="card text-bg-primary mb-3 cardmedico col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+						<div className="card-body cardbodymedico">
+							<h1 className="card-title">Dr. Ivan Herrera</h1>
+							<h3 className="card-text">Médico Cirujano</h3>
+							<h3 className="card-text">Especialidad en Cardiología</h3>
+							<a href="#" className="btn btn-lg btn-success">AGENDAR CITA</a>
+						</div>
+					</div>
+					<div className="card text-bg-primary mb-3 cardmedico col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+						<div className="card-body cardbodymedico">
+							<h1 className="card-title">Dr. Ivan Herrera</h1>
+							<h3 className="card-text">Médico Cirujano</h3>
+							<h3 className="card-text">Especialidad en Cardiología</h3>
+							<a href="#" className="btn btn-lg btn-success">AGENDAR CITA</a>
+						</div>
+					</div>
+					<div className="card text-bg-primary mb-3 cardmedico col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+						<div className="card-body cardbodymedico">
+							<h1 className="card-title">Dr. Ivan Herrera</h1>
+							<h3 className="card-text">Médico Cirujano</h3>
+							<h3 className="card-text">Especialidad en Cardiología</h3>
+							<a href="#" className="btn btn-lg btn-success">AGENDAR CITA</a>
+						</div>
+					</div>
+					<div class="card text-bg-light col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+						<img src="https://cdn.pixabay.com/photo/2017/08/01/23/01/doctor-2568476_1280.jpg" class="card-img" alt="..." />
+						<div class="card-img-overlay d-grid align-content-between">
+							<div className="btn btn-primary">
+								<h1 className="card-text cardtextimg">Dr. Ivan Herrera</h1>
+								<h3 className="card-text cardtextimg">Médico Cirujano</h3>
+								<h3 className="card-text cardtextimg">Especialidad en Cardiología</h3>
+							</div>
+							<a href="#" className="btn btn-lg btn-primary">AGENDAR CITA</a>
+						</div>
 					</div>
 				</div>
-				<div className="card text-bg-primary mb-3 cardmedico col-sm-12 col-md-12 col-lg-6 col-xl-4 col-xxl-4">
-					<div className="card-body cardbodymedico">
-						<h1 className="card-title">Dr. Ivan Herrera</h1>
-						<h3 className="card-text">Médico Cirujano</h3>
-						<h3 className="card-text">Especialidad en Cardiología</h3>
-						<a href="#" className="btn btn-lg btn-success">AGENDAR CITA</a>
-					</div>
-				</div>
-				<div className="card text-bg-primary mb-3 cardmedico col-sm-12 col-md-12 col-lg-6 col-xl-4 col-xxl-4">
-					<div className="card-body cardbodymedico">
-						<h1 className="card-title">Dr. Ivan Herrera</h1>
-						<h3 className="card-text">Médico Cirujano</h3>
-						<h3 className="card-text">Especialidad en Cardiología</h3>
-						<a href="#" className="btn btn-lg btn-success">AGENDAR CITA</a>
-					</div>
-				</div>
-				<div className="card text-bg-primary mb-3 cardmedico col-sm-12 col-md-12 col-lg-6 col-xl-4 col-xxl-4">
-					<div className="card-body cardbodymedico">
-						<h1 className="card-title">Dr. Ivan Herrera</h1>
-						<h3 className="card-text">Médico Cirujano</h3>
-						<h3 className="card-text">Especialidad en Cardiología</h3>
-						<a href="#" className="btn btn-lg btn-success">AGENDAR CITA</a>
-					</div>
+			</div>
+			<div className="card text-bg-danger mb-3 text-center">
+				<div className="card-header">
+					<h1 className="card-title">URGENCIAS</h1>
+					<h4 className="card-text">624445566 / 6245558899</h4>
 				</div>
 			</div>
 		</>
