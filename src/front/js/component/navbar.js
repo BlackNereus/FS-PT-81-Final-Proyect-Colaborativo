@@ -4,11 +4,16 @@ import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const Navbar = () => {
+
   const navigate = useNavigate(); 
 
   const handlePruebaYa = () => {
     navigate("/login"); 
   };
+
+	
+
+		
 
   return (
     <nav className="navbar d-flex">
