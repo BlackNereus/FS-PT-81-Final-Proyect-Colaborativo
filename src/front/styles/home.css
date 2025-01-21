@@ -212,8 +212,9 @@
   margin:0;
   padding: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
-  background-image: url("https://www.ikerlan.es/sites/default/files/styles/breakpoint_1920/public/2023-12/Ikerlan-sector-salud-hero.jpg");
-  height: 29vh;
+  /*background-image: url("https://www.deustosalud.com/sites/deustosalud/2022-01/curso-salud-digital-desktop-1-1.jpg");*/
+  background-color: #2C5364;
+  height: 25vh;
   background-size: cover;
   background-position: center;
   color:#ffffff;
@@ -229,4 +230,8 @@
   margin-top: 20px;
   padding: 6px 26px;
   font-size: 20px;
+}
+.card_container{
+  display: flex;
+  justify-content: space-around;
 }
