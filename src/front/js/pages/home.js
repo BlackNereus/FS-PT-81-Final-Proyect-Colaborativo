@@ -84,7 +84,7 @@ export const Home = () => {
 								<h3 className="card-text cardtextimg">Médico Cirujano</h3>
 								<h3 className="card-text cardtextimg">Cardiología</h3>
 							</div>
-							<a href="#" className="btn btn-outline-primary cardtextimg">AGENDAR CITA</a>
+							<a href="#" className="btn btn-lg btn-primary cardtextimg">AGENDAR CITA</a>
 						</div>
 					</div>
 				</div>
