@@ -1,19 +1,29 @@
+
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export const Navbar = () => {
-	return (
-		<nav className="navbar navbar-light bg-light">
-			<div className="container">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-				</Link>
-				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
-					</Link>
-				</div>
-			</div>
-		</nav>
-	);
+
+  const navigate = useNavigate(); 
+
+  const handlePruebaYa = () => {
+    navigate("/login"); 
+  };
+
+	
+
+		
+
+  return (
+    <nav className="navbar d-flex">
+      <div className="container">
+        <button onClick={handlePruebaYa} className="btn-green">Prueba ya</button>
+        <a className="nav-link active" style={{ color: "white" }} aria-current="#" href="#">Precio</a>
+        <a className="nav-link" style={{ color: "white" }} href="#">Funcionabilidades</a>
+        <a className="nav-link" style={{ color: "white" }} href="#">Contacto</a>
+        <a className="nav-link" style={{ color: "white" }} href="#">Noticias</a>
+      </div>
+    </nav>
+  );
 };
