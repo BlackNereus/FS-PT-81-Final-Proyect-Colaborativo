@@ -17,9 +17,9 @@ export const Home = () => {
 					</div>
 				</div>
 			</div>
-			<div className="container-fluid card_container">
+			<div className="container-fluid">
 				<div class="row">
-					<div class="col-sm-12 col-md-12 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center">
+					<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center gap-2">
 						<div class="card">
 							<img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" class="card-img-top" alt="DRACLARAFUENTES" />
 							<div class="card-body">
@@ -29,7 +29,7 @@ export const Home = () => {
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-12 col-md-12 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center">
+					<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center gap-2">
 						<div class="card">
 							<img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" class="card-img-top" alt="DRACLARAFUENTES" />
 							<div class="card-body">
@@ -39,7 +39,7 @@ export const Home = () => {
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-12 col-md-12 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center">
+					<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center gap-2">
 						<div class="card">
 							<img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" class="card-img-top" alt="DRACLARAFUENTES" />
 							<div class="card-body">
@@ -49,7 +49,7 @@ export const Home = () => {
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-12 col-md-12 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center">
+					<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center gap-2">
 						<div class="card">
 							<img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" class="card-img-top" alt="DRACLARAFUENTES" />
 							<div class="card-body">
