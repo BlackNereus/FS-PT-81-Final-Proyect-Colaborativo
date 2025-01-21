@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/calendar.css";
 
-export const Calendars = () => {
+export const Calendar = () => {
   const [month, setMonth] = useState("February");
   const [year, setYear] = useState(2021);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedHour, setSelectedHour] = useState("12"); // Establece una hora predeterminada
+  const [selectedMinute, setSelectedMinute] = useState("00"); // Establece minutos predeterminados
   const [showMonthSelector, setShowMonthSelector] = useState(false);
 
   const months = [
@@ -54,6 +56,16 @@ export const Calendars = () => {
     return days;
   };
 
+  // Maneja la selección de hora
+  const handleHourChange = (e) => {
+    setSelectedHour(e.target.value);
+  };
+
+  // Maneja la selección de minutos
+  const handleMinuteChange = (e) => {
+    setSelectedMinute(e.target.value);
+  };
+
   useEffect(() => {
     generateDays();
   }, [month, year, selectedDate]);
@@ -100,10 +112,44 @@ export const Calendars = () => {
       <div className="calendar-footer">
         {selectedDate && (
           <div className="selected-date">
-            Fecha seleccionada: {selectedDate}
+            Fecha seleccionada: {selectedDate} 
+            <br />
+            {/* Selector de Hora */}
+            <div className="time-selector">
+              <label>Hora:</label>
+              <select value={selectedHour} onChange={handleHourChange}>
+                {Array.from({ length: 24 }, (_, i) => {
+                  const hour = i < 10 ? `0${i}` : i;
+                  return (
+                    <option key={hour} value={hour}>
+                      {hour}
+                    </option>
+                  );
+                })}
+              </select>
+              :
+              {/* Selector de Minutos */}
+              <select value={selectedMinute} onChange={handleMinuteChange}>
+                {Array.from({ length: 60 }, (_, i) => {
+                  const minute = i < 10 ? `0${i}` : i;
+                  return (
+                    <option key={minute} value={minute}>
+                      {minute}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
           </div>
         )}
+      </div>
+      <div className="calendar-button">
+          <button className="button-submit">Enviar</button>
+          <button className="button-cancel">Cancelar</button>
+
       </div>
     </div>
   );
 };
+
+export default Calendar;
