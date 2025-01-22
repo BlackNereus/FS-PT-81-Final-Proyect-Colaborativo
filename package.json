@@ -73,10 +73,14 @@
 		]
 	},
 	"dependencies": {
+		"@fullcalendar/core": "^6.1.15",
+		"@fullcalendar/daygrid": "^6.1.15",
+		"@fullcalendar/interaction": "^6.1.15",
+		"@fullcalendar/react": "^6.1.15",
+		"@fullcalendar/timegrid": "^6.1.15",
 		"bootstrap": "^5.3.3",
 		"prop-types": "^15.6.1",
 		"react": "^16.14.0",
-		"react-calendar": "^5.1.0",
 		"react-dom": "^16.14.0",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0"
