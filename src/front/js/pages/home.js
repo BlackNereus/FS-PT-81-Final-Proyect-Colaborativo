@@ -78,7 +78,7 @@ export const Home = () => {
 						<h1 className="card-title">Dr. Ivan Herrera</h1>
 						<h3 className="card-text">Médico Cirujano</h3>
 						<h3 className="card-text">Especialidad en Cardiología</h3>
-						<a href="#" className="btn btn-lg btn-success">AGENDAR CITA</a>
+						<a href="" className="btn btn-lg btn-success">AGENDAR CITA</a>
 					</div>
 				</div>
 			</div>

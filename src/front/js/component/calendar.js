@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/calendar.css";
+import { DoctorCards } from "./doctorCard.js";
 
 export const Calendars = () => {
   const [month, setMonth] = useState("February");
   const [year, setYear] = useState(2021);
   const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedHour, setSelectedHour] = useState("12"); // Establece una hora predeterminada
-  const [selectedMinute, setSelectedMinute] = useState("00"); // Establece minutos predeterminados
+  const [selectedHour, setSelectedHour] = useState("12");
+  const [selectedMinute, setSelectedMinute] = useState("00");
   const [showMonthSelector, setShowMonthSelector] = useState(false);
 
+  const navigate = useNavigate(); 
   const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -19,7 +22,7 @@ export const Calendars = () => {
 
   const handleMonthClick = (selectedMonth) => {
     setMonth(selectedMonth);
-    setShowMonthSelector(false); // Oculta el selector de meses después de elegir
+    setShowMonthSelector(false);
   };
 
   const toggleMonthSelector = () => setShowMonthSelector(!showMonthSelector);
@@ -29,6 +32,11 @@ export const Calendars = () => {
     return date.getDate();
   };
 
+  const getFirstDayOfMonth = (month, year) => {
+    const date = new Date(year, months.indexOf(month), 1);
+    return date.getDay();
+  };
+
   const handleDayClick = (day) => {
     const dateString = `${year}-${months.indexOf(month) + 1}-${day < 10 ? '0' + day : day}`;
     setSelectedDate(dateString);
@@ -36,117 +44,156 @@ export const Calendars = () => {
 
   const generateDays = () => {
     const daysInMonth = getDaysInMonth(month, year);
-    const firstDay = new Date(year, months.indexOf(month), 1).getDay();
+    const firstDay = getFirstDayOfMonth(month, year);
+    const totalCells = Math.ceil((daysInMonth + firstDay) / 7) * 7; // Completa la cuadrícula
+
     const days = [];
+    let currentDay = 1;
+
+    // Agregar espacios vacíos al principio según el primer día del mes
     for (let i = 0; i < firstDay; i++) {
-      days.push(<div className="empty-day" key={`empty-${i}`}></div>);
+      days.push(<div key={`empty-${i}`} className="calendar-day empty-day"></div>);
     }
-    for (let i = 1; i <= daysInMonth; i++) {
-      const isSelected = selectedDate === `${year}-${months.indexOf(month) + 1}-${i < 10 ? '0' + i : i}`;
-      days.push(
-        <div
-          key={i}
-          className={`calendar-day ${isSelected ? 'selected' : ''}`}
-          onClick={() => handleDayClick(i)}
-        >
-          {i}
+
+    // Agregar los días del mes
+    for (let i = firstDay; i < totalCells; i++) {
+      if (currentDay <= daysInMonth) {
+        const isSelected = selectedDate === `${year}-${months.indexOf(month) + 1}-${currentDay < 10 ? '0' + currentDay : currentDay}`;
+        days.push(
+          <div
+            key={currentDay}
+            className={`calendar-day ${isSelected ? 'selected' : ''}`}
+            onClick={() => handleDayClick(currentDay)}
+          >
+            {currentDay}
+          </div>
+        );
+        currentDay++;
+      } else {
+        // Agregar días vacíos al final del mes si es necesario
+        days.push(<div key={`empty-${currentDay}`} className="calendar-day empty-day"></div>);
+      }
+    }
+
+    // Agrupar los días en filas de 7 elementos
+    const rows = [];
+    for (let i = 0; i < days.length; i += 7) {
+      rows.push(
+        <div className="calendar-week" key={`week-${i}`}>
+          {days.slice(i, i + 7)}
         </div>
       );
     }
-    return days;
+    return rows;
   };
 
-  // Maneja la selección de hora
-  const handleHourChange = (e) => {
-    setSelectedHour(e.target.value);
+  const handleScheduleAppointment = () => {
+    if (selectedDate) {
+      const fullDate = `${selectedDate} ${selectedHour}:${selectedMinute}`;
+      navigate(`/calendar/${fullDate}`);
+    } else {
+      alert("Por favor, selecciona una fecha.");
+    }
   };
-
-  // Maneja la selección de minutos
-  const handleMinuteChange = (e) => {
-    setSelectedMinute(e.target.value);
-  };
-
-  useEffect(() => {
-    generateDays();
-  }, [month, year, selectedDate]);
 
   return (
-    <div className={`calendar ${showMonthSelector ? "show" : ""}`}>
-      <div className="calendar-header">
-        <span className="month-picker" onClick={toggleMonthSelector}>
-          {month}
-        </span>
-        <div className="year-picker">
-          <span className="year-change" onClick={prevYear}>-</span>
-          <span>{year}</span>
-          <span className="year-change" onClick={nextYear}>+</span>
+    <div className="container">
+      <div className="doctor-calendar-wrapper">
+        <div className="doctor-section">
+          <DoctorCards />
         </div>
-      </div>
 
-      {/* Selector de Meses */}
-      <div className={`month-selector ${showMonthSelector ? 'show' : ''}`}>
-        {months.map((m, index) => (
-          <div key={index} className="month-option" onClick={() => handleMonthClick(m)}>
-            {m}
-          </div>
-        ))}
-      </div>
+        <div className="calendar-section">
+          <div className="calendar-container">
+            <div className="calendar-header">
+              <span
+                className="month-picker"
+                onClick={toggleMonthSelector}
+              >
+                {month}
+              </span>
+              <div className="year-picker">
+                <span className="year-change" onClick={prevYear}>-</span>
+                <span>{year}</span>
+                <span className="year-change" onClick={nextYear}>+</span>
+              </div>
+            </div>
 
-      {/* Calendario */}
-      <div className="calendar-body">
-        <div className="calendar-week-day">
-          <div>Dom</div>
-          <div>Lun</div>
-          <div>Mar</div>
-          <div>Mie</div>
-          <div>Jue</div>
-          <div>Vie</div>
-          <div>Sab</div>
-        </div>
-        <div className="calendar-days">
-          {generateDays()}
-        </div>
-      </div>
+            <div
+              className={`month-selector ${showMonthSelector ? 'show' : ''}`}
+            >
+              {months.map((m, index) => (
+                <div
+                  key={index}
+                  className="month-option"
+                  onClick={() => handleMonthClick(m)}
+                >
+                  {m}
+                </div>
+              ))}
+            </div>
 
-      {/* Fecha seleccionada */}
-      <div className="calendar-footer">
-        {selectedDate && (
-          <div className="selected-date">
-            Fecha seleccionada: {selectedDate} 
-            <br />
-            {/* Selector de Hora */}
+            <div className="calendar-body">
+              <div className="calendar-week-day">
+                <div>Dom</div>
+                <div>Lun</div>
+                <div>Mar</div>
+                <div>Mie</div>
+                <div>Jue</div>
+                <div>Vie</div>
+                <div>Sab</div>
+              </div>
+              <div className="calendar-days">
+                {generateDays()}
+              </div>
+            </div>
+
             <div className="time-selector">
-              <label>Hora:</label>
-              <select value={selectedHour} onChange={handleHourChange}>
-                {Array.from({ length: 24 }, (_, i) => {
-                  const hour = i < 10 ? `0${i}` : i;
-                  return (
-                    <option key={hour} value={hour}>
-                      {hour}
-                    </option>
-                  );
-                })}
+              <select
+                value={selectedHour}
+                onChange={(e) => setSelectedHour(e.target.value)}
+              >
+                {[...Array(24).keys()].map((h) => (
+                  <option key={h} value={h < 10 ? `0${h}` : h}>
+                    {h < 10 ? `0${h}` : h}
+                  </option>
+                ))}
               </select>
-              :
-              {/* Selector de Minutos */}
-              <select value={selectedMinute} onChange={handleMinuteChange}>
-                {Array.from({ length: 60 }, (_, i) => {
-                  const minute = i < 10 ? `0${i}` : i;
-                  return (
-                    <option key={minute} value={minute}>
-                      {minute}
-                    </option>
-                  );
-                })}
+              <span>:</span>
+              <select
+                value={selectedMinute}
+                onChange={(e) => setSelectedMinute(e.target.value)}
+              >
+                {[...Array(60).keys()].map((m) => (
+                  <option key={m} value={m < 10 ? `0${m}` : m}>
+                    {m < 10 ? `0${m}` : m}
+                  </option>
+                ))}
               </select>
             </div>
-          </div>
-        )}
-      </div>
-      <div className="calendar-button">
-          <button className="button-submit">Enviar</button>
-          <button className="button-cancel">Cancelar</button>
 
+            <div className="calendar-footer">
+              <div className="calendar-buttons">
+                <button
+                  className="button-cancel"
+                  onClick={() => {
+                    setSelectedDate(null);
+                    setSelectedHour("12");
+                    setSelectedMinute("00");
+                  }}
+                >
+                  Cancelar
+                </button>
+                <button
+                  className="button-submit"
+                  onClick={handleScheduleAppointment}
+                >
+                  Agendar Cita
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
