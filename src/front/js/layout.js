@@ -12,7 +12,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Registro } from "./pages/registro.jsx";
 import { Login } from "./pages/login.jsx";
-import { Cita } from "./pages/cita.jsx";
+import  Cita  from "./pages/cita.jsx";
 import { Calendars } from "./component/calendar.js";
 import { DoctorCards } from "./component/doctorCard.js";
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/calendar.css";
 import { DoctorCards } from "./doctorCard.js";
 
-export const Calendars = () => {
+export const Calendar = () => {
   const [month, setMonth] = useState("February");
   const [year, setYear] = useState(2021);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -198,3 +198,5 @@ export const Calendars = () => {
     </div>
   );
 };
+
+export default Calendar;
