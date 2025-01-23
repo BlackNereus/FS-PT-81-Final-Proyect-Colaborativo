@@ -137,3 +137,4 @@ export const Calendars = () => {
     </div>
   );
 };
+export default Calendars;
