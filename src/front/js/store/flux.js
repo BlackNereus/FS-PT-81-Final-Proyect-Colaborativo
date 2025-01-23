@@ -37,7 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify({ email, password }),
 					});
 					if (!response.ok) throw new Error("Error creando al usuario");
-					const data = await response.json;
+					const data = await response.json();
 					const store = getStore();
 					setStore({ users: [...store.users, data.data] });
 				} catch (error) {
@@ -148,7 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getServices: async () => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL+/api/service);
+					const response = await fetch(process.env.BACKEND_URL+'/api/service');
 					if (!response.ok) throw new Error("Error fetching services");
 	
 					const data = await response.json();
@@ -160,7 +160,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	
 			getServiceById: async (id) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL +/api/service/+ id);
+					const response = await fetch(process.env.BACKEND_URL +'/api/service/'+ id);
 					if (!response.ok) throw new Error("Error fetching service");
 	
 					const data = await response.json();
@@ -172,7 +172,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	
 			createService: async (service) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL+/api/service, {
+					const response = await fetch(process.env.BACKEND_URL+'/api/service', {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify(service),
@@ -189,7 +189,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	
 			updateService: async (id, updatedData) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL+/api/service/+id, {
+					const response = await fetch(process.env.BACKEND_URL+'/api/service/'+id, {
 						method: "PUT",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify(updatedData),
@@ -209,7 +209,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	
 			deleteService: async (id) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL+/api/service/+id, {
+					const response = await fetch(process.env.BACKEND_URL+'/api/service/'+id, {
 						method: "DELETE",
 					});
 					if (!response.ok) throw new Error("Error deleting service");
@@ -223,7 +223,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		getCitas: async () => {
             try {
-                const response = await fetch(process.env.BACKEND_URL+/api/citas);
+                const response = await fetch(process.env.BACKEND_URL+'/api/citas');
                 if (!response.ok) throw new Error("Error obteniendo las citas");
                 const data = await response.json();
                 setStore({ citas: data.data });
@@ -234,7 +234,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         getCitaById: async (id) => {
             try {
-                const response = await fetch(process.env.BACKEND_URL+/api/citas/+id);
+                const response = await fetch(process.env.BACKEND_URL+'/api/citas/'+id);
                 if (!response.ok) throw new Error("Error obteniendo la cita");
                 const data = await response.json();
                 setStore({ selectedCita: data.user }); 
@@ -245,7 +245,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         createCita: async (cita) => {
             try {
-                const response = await fetch(process.env.BACKEND_URL+/api/citas, {
+                const response = await fetch(process.env.BACKEND_URL+'/api/citas', {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(cita),
@@ -261,7 +261,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         updateCita: async (id, updatedData) => {
             try {
-                const response = await fetch(process.env.BACKEND_URL+/api/citas/+id, {
+                const response = await fetch(process.env.BACKEND_URL+'/api/citas/'+id, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(updatedData),
@@ -280,7 +280,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         deleteCita: async (id) => {
             try {
-                const response = await fetch(process.env.BACKEND_URL+/api/citas/+id, {
+                const response = await fetch(process.env.BACKEND_URL+'/api/citas/'+id, {
                     method: "DELETE",
                 });
                 if (!response.ok) throw new Error("Error borrando la cita");
