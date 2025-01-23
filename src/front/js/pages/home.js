@@ -15,11 +15,7 @@ export const Home = () => {
 	return (
 		<>
 			<div className="jumbotron jumbotron_div">
-				<div className="container">
-					<h1 className="jumbotron_h1 text-center">BIENVENIDO A CLINICA CENTRO</h1>
-					<div className="container-fluid d-flex justify-content-start">
-					</div>
-				</div>
+				<h1 className="jumbotron_h1">BIENVENIDO A CLINICA CENTRO</h1>
 			</div>
 			<div className="container-fluid">
 				<div className="row">
@@ -38,7 +34,7 @@ export const Home = () => {
 							<img src="https://media.istockphoto.com/id/914933448/es/vector/estilo-plano-coraz%C3%B3n-icono-vector-de-san-valent%C3%ADn-amor-s%C3%ADmbolo-aislado-en-ilustraci%C3%B3n-de.jpg?s=612x612&w=0&k=20&c=j6mb6AQ0x8J7ix6HESUF_nbVhXLVMX2PrJlTBlLxvqo=" className="card-img-top" alt="DRACLARAFUENTES" />
 							<div className="card-body">
 							
-								<p className="card-text">CARDIOLOGIA</p>
+								<p className="card-text">MEDICO CIRUJANO. CARDIOLOGIA.</p>
 								<a href="#" className="btn btn-primary" onClick={handlePruebaYa}>AGENDAR CITA</a>
 							</div>
 						</div>
@@ -48,7 +44,7 @@ export const Home = () => {
 							<img src="https://us.123rf.com/450wm/surfupvector/surfupvector1809/surfupvector180900499/109986117-icono-de-l%C3%ADnea-de-ri%C3%B1%C3%B3n-renal-tratamiento-di%C3%A1lisis-concepto-de-cuerpo-humano-la-ilustraci%C3%B3n.jpg?ver=6" className="card-img-top" alt="DRACLARAFUENTES" />
 							<div className="card-body">
 							<i class="fa-regular fa-kidneys"></i>
-								<p className="card-text">NEFROLOGIA</p>
+								<p className="card-text">MEDICO CIRUJANO. NEFROLOGIA.</p>
 								<a href="#" className="btn btn-primary" onClick={handlePruebaYa}>AGENDAR CITA</a>
 							</div>
 						</div>
@@ -58,7 +54,7 @@ export const Home = () => {
 							<img src="https://static.vecteezy.com/system/resources/previews/021/533/657/non_2x/eye-black-glyph-ui-icon-part-of-human-body-organ-of-perception-visual-system-user-interface-design-silhouette-symbol-on-white-space-solid-pictogram-for-web-mobile-isolated-illustration-vector.jpg" className="card-img-top" alt="DRACLARAFUENTES" />
 							<div className="card-body">
 								
-								<p className="card-text">OFTALMOLOGIA</p>
+								<p className="card-text">MEDICO CIRUJANO. OFTALMOLOGIA.</p>
 								<a href="#" className="btn btn-primary" onClick={handlePruebaYa}>AGENDAR CITA</a>
 							</div>
 						</div>
