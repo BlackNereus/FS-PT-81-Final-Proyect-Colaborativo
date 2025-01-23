@@ -15,11 +15,7 @@ export const Home = () => {
 	return (
 		<>
 			<div className="jumbotron jumbotron_div">
-				<div className="container">
-					<h1 className="jumbotron_h1 text-center">BIENVENIDO A CLINICA CENTRO</h1>
-					<div className="container-fluid d-flex justify-content-start">
-					</div>
-				</div>
+				<h1 className="jumbotron_h1">BIENVENIDO A CLINICA CENTRO</h1>
 			</div>
 			<hr className="lineas"></hr>
 			<h1 className="title">Nuestras especialidades</h1>
