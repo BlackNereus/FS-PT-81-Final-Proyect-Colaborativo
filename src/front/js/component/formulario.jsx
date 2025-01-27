@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js"
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 
 export const Formulario = () => {
+  const {store,actions} = useContext(Context)
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,6 +18,8 @@ export const Formulario = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    actions.createUser(formData) 
+    navigate("/doctor")
     console.log("User logged in:", formData);
   };
 
@@ -49,7 +54,7 @@ export const Formulario = () => {
           required
         />
       </div>
-      <button type="submit" className="button">
+      <button type="submit" className="button" onClick={handleSubmit}> 
         Iniciar Sesión
       </button>
       <p className="footer-login">

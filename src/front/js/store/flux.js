@@ -7,9 +7,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			date: [],
 			message: null,
 			auth: localStorage.getItem('token') || false,
-			
 		},
-		
+
 		actions: {
 			getUserData: async () =>{try{
 
@@ -31,10 +30,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.error(error)
 				}
 			},
+
 			register: async formData => {
 
-				try{
-
+				try
+				{
 					const resp = await fetch(process.env.BACKEND_URL+'/api/register',{
 						method: 'POST',
 						headers: {
@@ -54,7 +54,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false
 				}
 			},
-			
 			getUsers: async () => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + '/api/users')
@@ -67,7 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getUserId: async (id) => {
-				try {
+					try {
 					const response = await fetch(process.env.BACKEND_URL + '/api/users/' + id)
 					if (!response.ok) throw new Error("Error obteniendo el id del Usuario");
 					const data = await response.json();
@@ -78,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			createUser: async (email, password) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL + '/api/users', {
+					const response = await fetch(process.env.BACKEND_URL + '/api/login', {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify({ email, password }),
@@ -86,9 +85,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (!response.ok) throw new Error("Error creando al usuario");
 					const data = await response.json();
 					const store = getStore();
-					setStore({ users: [...store.users, data.data] });
+					setStore({ users: [...store.users, data.user] }) 
+					localStorage.setItem('token', data.token)
+					setStore({auth: true, token: data.token})
+					return true;
 				} catch (error) {
 					console.error("Error creando usuario:", error);
+					return false;
 				}
 			},
 			deleteUser: async (id) => {
@@ -132,7 +135,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Error obteniendo compañia:", error);
 				}
 			},
-
 			getCompanyId: async (id) => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + '/api/comany/' + id)
@@ -158,7 +160,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Error creando la compañia:", error);
 				}
 			},
-
 			updateCompany: async (id, updatedData) => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + '/api/comany/' + id, {
