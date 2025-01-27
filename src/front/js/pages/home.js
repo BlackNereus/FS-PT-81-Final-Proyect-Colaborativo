@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 
 import "../../styles/home.css";
 
 
 
-const handlePruebaYa = () => {
-	navigate("/login");
+const handleAgendarCita = () => {
+	navigate("/cita");
 };
 
 export const Home = () => {
@@ -65,7 +66,7 @@ export const Home = () => {
 				</div>
 				<div>
 					<div className="d-flex justify-content-center align-items-center my-4">
-						<button className="btn-custom" onClick={handlePruebaYa}>
+						<button className="btn-custom" onClick={handleAgendarCita}>
 							Agendar cita
 						</button>
 					</div>

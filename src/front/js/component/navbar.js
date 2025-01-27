@@ -36,9 +36,9 @@ export const Navbar = () => {
               </ul>
             </li>
           </ul>
-          
+          { localStorage.getItem("token") ? <button onClick={() => navigate("/doctors")} className="btn-green">Agendar Cita</button> : 
             <button onClick={handlePruebaYa} className="btn-green">Prueba ya</button>
-          
+          }
         </div>
       </div>
     </nav>

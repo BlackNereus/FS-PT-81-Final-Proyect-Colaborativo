@@ -35,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try{
 
-					const resp = await fetch(process.env.BACKEND_URL+'/api/',{
+					const resp = await fetch(process.env.BACKEND_URL+'/api/register',{
 						method: 'POST',
 						headers: {
 							'Content-Type' : 'application/json'
@@ -47,9 +47,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(data)
 					localStorage.setItem('token', data.token)
 					setStore({auth: true, token: data.token})
+					return true 
 				}
 				catch (error){
 					console.error(error)
+					return false
 				}
 			},
 			
