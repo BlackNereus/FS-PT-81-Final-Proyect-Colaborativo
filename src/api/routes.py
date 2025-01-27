@@ -266,15 +266,16 @@ def login():
         return jsonify({"msg": "missing data"}), 400
     exist = Users.query.filter_by(email=email).first()
     if exist:
-        return jsonify({"msg": "no user found"}), 404
+        return jsonify({"msg": "user already exist"}), 400
     
 
-    hashed_password = generate_password_hash(password)
+    
     if check_password_hash(exist.password, password):
+        token = create_access_token(identity=exist.id)
+        return jsonify({"msg": 'ok', 'token': token, "user":exist})
+    else:
+   
         return jsonify({"msg":"email/password wrong"})
-
-    token = create_access_token(identity=exist.id)
-    return jsonify({"msg": 'ok', 'token': token})
 
 @api.route('/protected', methods=['GET'])
 @jwt_required()
