@@ -1,9 +1,21 @@
-import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Formulario } from "../component/formulario.jsx";
+import React from "react";
+import PropTypes from "prop-types";
+import DetallesCita from "../component/detallesCita.jsx";
 
-export const Cita = () => {
+
+const Cita = () => {
+
     return (
-    <Formulario/>
-    )
-}
+        <DetallesCita />
+      );
+    };
+    
+
+    // Cita.propTypes = {
+    //   direccion: PropTypes.string.isRequired,
+    //   fecha: PropTypes.string.isRequired,
+    //   hora: PropTypes.string.isRequired
+    // };
+    
+    export default Cita;
