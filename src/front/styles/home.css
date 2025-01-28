@@ -242,6 +242,21 @@
   text-align: center; 
 }
 
+.divdelfondo{
+  background-color: #2C5364;
+  margin: 0;
+  padding: 0 0 2rem 0;
+  font-size: 4rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: bolder;
+  /*background-color: rgba(255, 255, 255, 0.8);*/
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+  text-align: center; 
+
+}
+
 .card_container{
   display: flex;
   justify-content: space-around;
@@ -274,3 +289,4 @@
   width: 80%; 
   margin: 20px auto;
 }
+

@@ -73,14 +73,16 @@ export const Home = () => {
 					</div>
 				</div>
 				<div>
-					<div className="d-flex flex-column justify-content-center align-items-center my-4">
+					<div className="d-flex flex-column justify-content-center align-items-center my-4 divdelfondo">
 						<div className="d-flex flex-column justify-content-center align-items-center my-4">
 							<h1>AGENDA AHORA TU CITA EN CLINICA CENTRAL</h1>
 							<h3>Es fácil, rápido y seguro.</h3>
 						</div>
+						<div class="d-grid gap-2 col-3 mx-auto">
 						<button className="btn btn-success btn-lg" onClick={handleAgendarCita}>
 							RESERVA TU CITA
 						</button>
+						</div>
 					</div>
 				</div>
 			</div>
