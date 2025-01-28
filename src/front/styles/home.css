@@ -149,6 +149,13 @@
     text-decoration: underline;
   }
 /* NAVBAR */
+  .logonavbar{
+    height: 6rem;
+  }
+
+  .navbarcoso{
+    font-weight: 50px;
+  }
 
   .navbar {
     background-color: #2C5364;
@@ -158,8 +165,7 @@
     justify-content: space-between;
     color: white;
   }
-  
- 
+
   .btn-green {
     background-color: #28a745; 
     color: white;
@@ -220,7 +226,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   color:#4286F4;
   border-radius: 0px!important;
 }
