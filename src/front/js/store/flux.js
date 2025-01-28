@@ -88,12 +88,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ users: [...store.users, data.user] }) 
 					localStorage.setItem('token', data.token)
 					setStore({auth: true, token: data.token})
-					return true;
 				} catch (error) {
-					console.error("Error creando usuario:", error);
-					return false;
-				}
-			},
+					console.error("Error creando usuario:", error);}
+				},
 			deleteUser: async (id) => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + '/api/users/' + id, {

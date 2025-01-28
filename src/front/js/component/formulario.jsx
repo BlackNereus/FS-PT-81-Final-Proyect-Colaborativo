@@ -19,7 +19,7 @@ export const Formulario = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     actions.createUser(formData) 
-    navigate("/doctor")
+    navigate("/doctors")
     console.log("User logged in:", formData);
   };
 
