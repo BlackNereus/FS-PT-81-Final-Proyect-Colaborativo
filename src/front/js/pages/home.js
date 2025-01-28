@@ -46,8 +46,8 @@ export const Home = () => {
 								<p className="card-text">CARDIOLOGIA</p>
 								<hr className="lineas" />
 								<p>Nuestros cardiologos brindan atención de excelencia en la prevención,
-									diagnóstico y tratamiento de enfermedades cardiovasculares.
-									Aplicando los más altos estándares médicos para preservar la salud de tu corazón.</p>
+									diagnóstico y tratamiento de enfermedades cardiovasculares,
+									aplicando los más altos estándares médicos para preservar la salud de tu corazón.</p>
 							</div>
 						</div>
 					</div>
