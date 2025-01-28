@@ -28,17 +28,3 @@ export const Navbar = () => {
     </nav>
   );
 };
-
-
-/*return (
-  <nav className="navbar d-flex">
-    <div className="container">
-      <button onClick={handleIniciaSesion} className="btn-green">INICIA SESION</button>
-      <a className="nav-link active" style={{ color: "white" }} aria-current="#" href="#">Precio</a>
-      <a className="nav-link" style={{ color: "white" }} href="#">Funcionabilidades</a>
-      <a className="nav-link" style={{ color: "white" }} href="#">Contacto</a>
-      <a className="nav-link" style={{ color: "white" }} href="#">Noticias</a>
-    </div>
-  </nav>
-);
-};
