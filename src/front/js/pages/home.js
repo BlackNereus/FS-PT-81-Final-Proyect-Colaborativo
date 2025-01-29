@@ -15,7 +15,8 @@ export const Home = () => {
 	return (
 		<>
 			<div className="jumbotron jumbotron_div">
-				<h1 className="jumbotron_h1">AGENPRO<br></br>La agenda rápida, fácil y segura.</h1>
+				<h1 className="jumbotron_h1">AGENPRO</h1>
+				<h3 className="jumbotron_h3">La agenda rápida, simple y segura.</h3>
 			</div>
 			{/*
 			<hr className="lineas"></hr>
@@ -85,7 +86,7 @@ export const Home = () => {
 				<div>
 					<div className="d-flex flex-column justify-content-center align-items-center my-4 divdelfondo">
 						<div className="d-flex flex-column justify-content-center align-items-center my-4">
-							<h1>Con AgenPro, tu negocio evoluciona. ¡Únete ahora!</h1>
+							<h1>AGENPRO es tu agenda digital sin estrés. ¿Listo para evolucionar?</h1>
 							<div class="d-grid gap-2 col-4 mx-auto">
 									<button className="btn-especial">
 										CONTACTANOS
