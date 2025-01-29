@@ -2,7 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import logonavbar from "../../img/3.png";
+import logonavbar from "../../img/agenpro.png";
 
 export const Navbar = () => {
 
