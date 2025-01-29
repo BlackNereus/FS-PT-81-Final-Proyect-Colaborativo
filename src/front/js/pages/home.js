@@ -6,13 +6,12 @@ import "../../styles/home.css";
 
 
 
-const handleAgendarCita = () => {
-	navigate("/cita");
-};
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
-
+	const navigate = useNavigate()
+	const handleAgendarCita = () => 
+		navigate("/doctors");
 	return (
 		<>
 			<div className="jumbotron jumbotron_div">
