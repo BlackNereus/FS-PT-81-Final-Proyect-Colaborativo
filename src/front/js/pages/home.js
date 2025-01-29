@@ -24,7 +24,7 @@ export const Home = () => {
 			*/}
 			<div className="container-fluid">
 				<div className="row">
-					<div className="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center card_container">
+					<div className="col-sm-12 col-md-12 col-lg-6 col-xl-3 col-xxl-3 d-flex justify-content-center card_container">
 						<div className="card">
 							<img src="https://sanicur.es/wp-content/uploads/2024/05/admin-ajax-2.jpg" className="card-img-top" alt="DRACLARAFUENTES" />
 							<div className="card-body">
@@ -38,7 +38,7 @@ export const Home = () => {
 							</div>
 						</div>
 					</div>
-					<div className="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center card_container">
+					<div className="col-sm-12 col-md-12 col-lg-6 col-xl-3 col-xxl-3 d-flex justify-content-center card_container">
 						<div className="card">
 							<img src="https://sanicur.es/wp-content/uploads/2024/05/male-physiotherapist.jpg" className="card-img-top" alt="DRACLARAFUENTES" />
 							<div className="card-body">
@@ -52,7 +52,7 @@ export const Home = () => {
 							</div>
 						</div>
 					</div>
-					<div className="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center card_container">
+					<div className="col-sm-12 col-md-12 col-lg-6 col-xl-3 col-xxl-3 d-flex justify-content-center card_container">
 						<div className="card">
 							<img src="https://sanicur.es/wp-content/uploads/2024/05/doctor-diagnoses-treats-virtual-humanology.jpg"
 								className="card-img-top" alt="DRACLARAFUENTES" />
@@ -67,7 +67,7 @@ export const Home = () => {
 							</div>
 						</div>
 					</div>
-					<div className="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 d-flex justify-content-center card_container">
+					<div className="col-sm-12 col-md-12 col-lg-6 col-xl-3 col-xxl-3 d-flex justify-content-center card_container">
 						<div className="card">
 							<img src="https://sanicur.es/wp-content/uploads/2024/05/female-psychologist.jpg" className="card-img-top" alt="DRACLARAFUENTES" />
 							<div className="card-body">
