@@ -7,10 +7,14 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from api.utils import APIException, generate_sitemap
 from api.models import db
-from api.routes import api
+from api.routes import api , gmail_routes
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
+from google_auth_oauthlib.flow import Flow
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+from dotenv import load_dotenv
 
 # from models import Person
 
@@ -18,6 +22,10 @@ ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
+app.secret_key = 'tu_clave_secreta'
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+app.register_blueprint(gmail_routes)
+load_dotenv()
 app.url_map.strict_slashes = False
 jwt=JWTManager(app)
 # database condiguration

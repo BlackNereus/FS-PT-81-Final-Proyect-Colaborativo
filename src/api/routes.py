@@ -1,15 +1,143 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, session, redirect
 from api.models import db, Users, Empresa, GestorCitas, Servicio
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
+from google_auth_oauthlib.flow import Flow
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import base64
+import os
 
 api = Blueprint('api', __name__)
+gmail_routes = Blueprint('gmail_routes', __name__)
 
+# gmail routes
+
+@gmail_routes.route('/authorize')
+def authorize():
+    # Configuración de OAuth2
+    flow = Flow.from_client_secrets_file(
+        'src/client_secret.json',
+        scopes=['https://www.googleapis.com/auth/gmail.send'],
+        redirect_uri=url_for('gmail_routes.oauth2callback', _external=True)  # Usamos 'gmail_routes' para hacer referencia al Blueprint
+    )
+    authorization_url, state = flow.authorization_url()
+    session['state'] = state
+    return redirect(authorization_url)
+
+@gmail_routes.route('/oauth2callback')
+def oauth2callback():
+    state = session['state']
+    flow = Flow.from_client_secrets_file(
+        'src/client_secret.json',
+        scopes=['https://www.googleapis.com/auth/gmail.send'],
+        state=state,
+        redirect_uri=url_for('gmail_routes.oauth2callback', _external=True)
+    )
+    flow.fetch_token(authorization_response=request.url)
+    credentials = flow.credentials
+    session['credentials'] = credentials_to_dict(credentials)
+    return redirect(url_for('gmail_routes.send_mail'))
+
+@api.route('/oauth2callback')
+def oauth2callback():
+    state = session.get('state')
+    if not state:
+        return jsonify({"error": "Estado de sesión inválido"}), 400
+
+    flow = Flow.from_client_secrets_file(
+        'src/client_secret.json',
+        scopes=['https://www.googleapis.com/auth/gmail.send'],
+        state=state,
+        redirect_uri=url_for('api.oauth2callback', _external=True)
+    )
+    flow.fetch_token(authorization_response=request.url)
+    credentials = flow.credentials
+    session['credentials'] = credentials_to_dict(credentials)
+
+    # Obtener el correo electrónico del usuario autenticado
+    try:
+        service = build('gmail', 'v1', credentials=credentials)
+        profile = service.users().getProfile(userId='me').execute()
+        email = profile['emailAddress']
+        session['user_email'] = email  # Guardar en sesión
+        return jsonify({"msg": "Autenticación exitosa", "email": email}), 200
+    except Exception as e:
+        print(f'Error al obtener el perfil: {e}')
+        return jsonify({"error": "No se pudo obtener el perfil"}), 500
+
+@gmail_routes.route('/send_mail', methods=['POST'])
+def send_mail():
+    credentials_info = session.get('credentials')
+    user_email = session.get('user_email')  # Usar correo autenticado
+   
+    print("Credenciales:", credentials_info)
+    print("Correo del usuario:", user_email)
+
+    if not credentials_info or not user_email:
+        return jsonify({"error": "Usuario no autenticado"}), 401
+
+    credentials = Credentials.from_authorized_user_info(info=credentials_info)
+    service = build('gmail', 'v1', credentials=credentials)
+
+    # Información del correo
+    to_email = request.json.get('to')
+    subject = request.json.get('subject')
+    body = request.json.get('body')
+
+    if not to_email or not subject or not body:
+        return jsonify({"error": "Faltan parámetros en la solicitud"}), 400
+
+    message = create_message(user_email, to_email, subject, body)
+    try:
+        send_message(service, "me", message)
+        return jsonify({"msg": "Correo enviado con éxito"}), 200
+    except Exception as error:
+        print(f'Error al enviar correo: {error}')
+        
+        return jsonify({"error": "No se pudo enviar el correo"}), 500
+
+
+
+
+# Función para crear el mensaje
+def create_message(sender, to, subject, body):
+    message = MIMEMultipart()
+    message['to'] = to
+    message['from'] = sender
+    message['subject'] = subject
+    msg = MIMEText(body)
+    message.attach(msg)
+    raw_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
+    return {'raw': raw_message}
+
+# Función para enviar el mensaje
+def send_message(service, sender, message):
+    try:
+        message = service.users().messages().send(userId=sender, body=message).execute()
+        print(f'Mensaje enviado: {message["id"]}')
+    except Exception as error:
+        print(f'Ocurrió un error: {error}')
+        return 'Ocurrió un error al enviar el correo'
+
+# Función para convertir las credenciales a un diccionario
+def credentials_to_dict(credentials):
+    return {
+        'token': credentials.token,
+        'refresh_token': credentials.refresh_token,
+        'token_uri': credentials.token_uri,
+        'client_id': credentials.client_id,
+        'client_secret': credentials.client_secret,
+        'scopes': credentials.scopes
+    }
+#
 
 # Allow CORS requests to this API
 CORS(api, origins="https://verbose-guide-wr9v5p7rvqvgf566r-3000.app.github.dev", methods=["GET", "POST", "PUT", "DELETE"], allow_headers=["Content-Type"])
