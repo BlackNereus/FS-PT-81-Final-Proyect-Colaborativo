@@ -76,7 +76,7 @@ export const Formulary = () => {
           />
         </div>
         <button type="submit" className="custom-register-button" onClick={handleSubmit}>
-          Registrarme
+git          Registrarme
         </button>
         <p className="form-footer">
           ¿Ya tienes cuenta? <a href="/login">Accede aquí</a>
