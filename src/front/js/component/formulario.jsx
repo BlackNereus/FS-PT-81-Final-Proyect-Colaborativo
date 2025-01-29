@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 
 export const Formulario = () => {
-  const {store,actions} = useContext(Context)
+  const { actions } = useContext(Context)
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
@@ -16,11 +16,16 @@ export const Formulario = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    actions.createUser(formData) 
-    navigate("/doctors")
-    console.log("User logged in:", formData);
+
+    if (!formData.email || !formData.password) {
+      setErrorMessage("Email y contraseña son requeridos.");
+      return;
+    }
+     
+    await actions.loginUser(formData); 
+    navigate("/");
   };
 
   return (
@@ -54,7 +59,7 @@ export const Formulario = () => {
           required
         />
       </div>
-      <button type="submit" className="button" onClick={handleSubmit}> 
+      <button type="submit" className="button" onClick={handleSubmit}>
         Iniciar Sesión
       </button>
       <p className="footer-login">
@@ -66,5 +71,5 @@ export const Formulario = () => {
     </form>
   );
 };
-  
-  export default Formulario;
+
+export default Formulario;
