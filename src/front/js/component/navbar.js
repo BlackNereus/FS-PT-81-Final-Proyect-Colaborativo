@@ -36,7 +36,7 @@ export const Navbar = () => {
             </li>
           </ul>
           {localStorage.getItem("token") ? <button onClick={() => navigate("/doctors")} className="btn btn-outline-primary botonnavbar">AGENDAR CITA</button> :
-            <button onClick={handlePruebaYa} className="btn btn-success btn-lg">INICIAR SESIÓN</button>
+            <button onClick={handlePruebaYa} className="btn-especial">INICIAR SESION</button>
           }
         </div>
       </div>

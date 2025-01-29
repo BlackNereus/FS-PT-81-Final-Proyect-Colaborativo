@@ -39,7 +39,7 @@ export const Home = () => {
 						<div className="card">
 						<img src="https://sanicur.es/wp-content/uploads/2024/05/male-physiotherapist.jpg" className="card-img-top" alt="DRACLARAFUENTES" />
 							<div className="card-body">
-								<p className="card-text">REHABILITACIÓN</p>
+								<p className="card-text">REHABILITACION</p>
 								<p>Desarrollamos terapias en rehabilitación funcional y manejo del dolor, 
 									enfocadas en recuperar la movilidad y optimizar el bienestar.</p>
 							</div>
@@ -70,12 +70,12 @@ export const Home = () => {
 				<div>
 					<div className="d-flex flex-column justify-content-center align-items-center my-4 divdelfondo">
 						<div className="d-flex flex-column justify-content-center align-items-center my-4">
-							<h1>AGENDA AHORA TU CITA EN CLINICA CENTRAL</h1>
-							<h3>Es fácil, rápido y seguro</h3>
+							<h1>AGENDE SU CITA EN CLINICA CENTRAL</h1>
+							<h3>De manera rápida, sencilla y segura</h3>
 						</div>
 						<div class="d-grid gap-2 col-3 mx-auto">
-						<button className="btn btn-success btn-lg" onClick={handleAgendarCita}>
-							RESERVA TU CITA 
+						<button className="btn-especial" onClick={handleAgendarCita}>
+						AGENDAR CITA
 						</button>
 						</div>
 					</div>
