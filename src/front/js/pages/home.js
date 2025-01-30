@@ -27,10 +27,10 @@ export const Home = () => {
 				<div className="row">
 					<div className="col-sm-12 col-md-12 col-lg-6 col-xl-3 col-xxl-3 d-flex justify-content-center card_container">
 						<div className="card">
-							<img src="https://sanicur.es/wp-content/uploads/2024/05/admin-ajax-2.jpg" className="card-img-top" alt="DRACLARAFUENTES" />
+							<img src="https://img.freepik.com/foto-gratis/lavadora-profesional-uniforme-azul-lavado-coches-lujo-pistola-agua-tunel-lavado-al-aire-libre_496169-333.jpg" className="card-img-top" alt="DRACLARAFUENTES" />
 							<div className="card-body">
 								<p className="card-text">LAVADERO</p>
-								<p>TE LAVAMOS LA ROPA</p>
+								<p>TE LAVAMOS EL COCHE</p>
 								<div className="d-grid gap-2 col-12 mx-auto">
 									<button className="btn-especial" onClick={handleAgendarCita}>
 										AGENDAR CITA
@@ -55,7 +55,7 @@ export const Home = () => {
 					</div>
 					<div className="col-sm-12 col-md-12 col-lg-6 col-xl-3 col-xxl-3 d-flex justify-content-center card_container">
 						<div className="card">
-							<img src="https://sanicur.es/wp-content/uploads/2024/05/doctor-diagnoses-treats-virtual-humanology.jpg"
+							<img src="https://cdn.pixabay.com/photo/2019/03/08/20/17/beauty-salon-4043096_640.jpg"
 								className="card-img-top" alt="DRACLARAFUENTES" />
 							<div className="card-body">
 								<p className="card-text">PELUQUERIA</p>
@@ -70,7 +70,7 @@ export const Home = () => {
 					</div>
 					<div className="col-sm-12 col-md-12 col-lg-6 col-xl-3 col-xxl-3 d-flex justify-content-center card_container">
 						<div className="card">
-							<img src="https://sanicur.es/wp-content/uploads/2024/05/female-psychologist.jpg" className="card-img-top" alt="DRACLARAFUENTES" />
+							<img src="https://547fdc8a.delivery.rocketcdn.me/wp-content/uploads/2021/08/27-1-677x400.jpg" className="card-img-top" alt="DRACLARAFUENTES" />
 							<div className="card-body">
 								<p className="card-text">UÑAS</p>
 								<p>TE ARRANCAMOS LAS UÑAS</p>
