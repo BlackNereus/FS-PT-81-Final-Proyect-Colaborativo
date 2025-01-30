@@ -31,7 +31,7 @@ export const Home = () => {
 							<div className="card-body">
 								<p className="card-text">LAVADERO</p>
 								<p>TE LAVAMOS LA ROPA</p>
-								<div class="d-grid gap-2 col-12 mx-auto">
+								<div className="d-grid gap-2 col-12 mx-auto">
 									<button className="btn-especial" onClick={handleAgendarCita}>
 										AGENDAR CITA
 									</button>
@@ -45,7 +45,7 @@ export const Home = () => {
 							<div className="card-body">
 								<p className="card-text">MASAJES</p>
 								<p>TE HACEMOS MASAJES</p>
-								<div class="d-grid gap-2 col-12 mx-auto">
+								<div className="d-grid gap-2 col-12 mx-auto">
 									<button className="btn-especial" onClick={handleAgendarCita}>
 										AGENDAR CITA
 									</button>
@@ -60,7 +60,7 @@ export const Home = () => {
 							<div className="card-body">
 								<p className="card-text">PELUQUERIA</p>
 								<p>TE PINTAMOS EL PELO</p>
-								<div class="d-grid gap-2 col-12 mx-auto">
+								<div className="d-grid gap-2 col-12 mx-auto">
 									<button className="btn-especial" onClick={handleAgendarCita}>
 										AGENDAR CITA
 									</button>
@@ -74,7 +74,7 @@ export const Home = () => {
 							<div className="card-body">
 								<p className="card-text">UÑAS</p>
 								<p>TE ARRANCAMOS LAS UÑAS</p>
-								<div class="d-grid gap-2 col-12 mx-auto">
+								<div className="d-grid gap-2 col-12 mx-auto">
 									<button className="btn-especial" onClick={handleAgendarCita}>
 										AGENDAR CITA
 									</button>
@@ -87,7 +87,7 @@ export const Home = () => {
 					<div className="d-flex flex-column justify-content-center align-items-center my-4 divdelfondo">
 						<div className="d-flex flex-column justify-content-center align-items-center my-4">
 							<h1>AGENPRO es tu agenda digital sin estrés. ¿Listo para evolucionar?</h1>
-							<div class="d-grid gap-2 col-4 mx-auto">
+							<div className="d-grid gap-2 col-4 mx-auto">
 									<button className="btn-especial">
 										CONTACTANOS
 									</button>
