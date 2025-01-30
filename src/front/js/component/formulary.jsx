@@ -24,65 +24,68 @@ export const Formulary = () => {
     console.log("User registered:", formData);
   };
 
-  return (
-    <form className="custom-register-form" onSubmit={handleSubmit}>
-      <h1 className="justify-content-center">Registro</h1>
-      <div className="form-group">
-        <label htmlFor="name">Nombre</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="lastname">Apellidos</label>
-        <input
-          type="text"
-          id="lastname"
-          name="lastname"
-          value={formData.lastname}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="email">
-          Email <span className="required">*</span>
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="password">
-          Contraseña <span className="required">*</span>
-        </label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <button type="submit" className="custom-register-button" onClick={handleSubmit}>
-        Registrarme
-      </button>
-      <p className="form-footer">
-        ¿Ya tienes cuenta? <a href="/login">Accede aquí</a>
-      </p>
-    </form>
-  );
-};
-
-export default Formulary;
+    const handleSignedUp = () => {
+      navigate("/elegir");
+    } 
+    return (
+      <form className="custom-register-form" onSubmit={handleSubmit}>
+        <h1 className="justify-content-center">Registro</h1>
+        <div className="form-group">
+          <label htmlFor="name">Nombre</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastname">Apellidos</label>
+          <input
+            type="text"
+            id="lastname"
+            name="lastname"
+            value={formData.lastname}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">
+            Email <span className="required">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">
+            Contraseña <span className="required">*</span>
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit" className="custom-register-button" onClick={handleSignedUp}>
+          Registrarme
+        </button>
+        <p className="form-footer">
+          ¿Ya tienes cuenta? <a href="/login">Accede aquí</a>
+        </p>
+      </form>
+    );
+  };
+  
+  export default Formulary;
