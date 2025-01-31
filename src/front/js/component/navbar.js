@@ -30,16 +30,16 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link navbarcoso" href="#">ELEMENTO 1</a>
+              <a className="nav-link navbarcoso" href="/">ELEMENTO 1</a>
             </li>
             <li className="nav-item">
               <a className="nav-link navbarcoso" href="#">ELEMENTO 2</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link navbarcoso" href="#">ELEMENTO 3</a>
+              <a className="nav-link navbarcoso" href="/login">ELEMENTO 3</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link navbarcoso" href="#">ELEMENTO 4</a>
+              <a className="nav-link navbarcoso" href="/registro">ELEMENTO 4</a>
             </li>
           </ul>
           <button className="btn btn-outline-primary mx-1" onClick={handleLogin}>Iniciar Sesion</button>
