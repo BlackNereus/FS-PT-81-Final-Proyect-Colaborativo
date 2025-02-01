@@ -7,7 +7,14 @@ import "../../styles/home.css";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const navigate = useNavigate();
-	const handleAgendarCita = () => navigate("/doctors");
+	
+	  const handleAgendarCita = () => {
+		if(!store.auth){
+		  navigate("/login", {state: {from:"/doctors"}})
+		}else {
+		  navigate("/doctors")
+		}
+	  }
 
 	return (
 		<>
