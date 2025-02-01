@@ -87,7 +87,29 @@ export const Calendars = () => {
     onProfilePageViewed: () => console.log("onProfilePageViewed"),
     onDateAndTimeSelected: () => console.log("onDateAndTimeSelected"),
     onEventTypeViewed: () => console.log("onEventTypeViewed"),
-    onEventScheduled: (e) => console.log(e.data.payload),
+    onEventScheduled: (e) => {
+      console.log(e.data.payload)
+      setTimeout(() => {
+        const detailsDiv = document.querySelector('[data-container="details"]');
+        
+        if (!detailsDiv) {
+          console.error("No se encontró el contenedor de detalles.");
+          return;
+        }
+  
+        const childDivs = detailsDiv.querySelectorAll('div');
+        const detailsObject = {};
+  
+        childDivs.forEach((div, index) => {
+          const text = div.textContent.trim();
+          if (text.length > 0) {
+            detailsObject[`info_${index + 1}`] = text;
+          }
+        });
+  
+        console.log("Detalles de la cita:", detailsObject);
+      }, 2000); 
+    },
     onPageHeightResize: (e) => console.log(e.data.payload.height),
   });
 
@@ -97,6 +119,7 @@ export const Calendars = () => {
       {/* InlineWidget Calendly */}
       <div>
         <InlineWidget url="https://calendly.com/ivanperezgonzalez123/30min" />
+        
       </div>
 
      </>

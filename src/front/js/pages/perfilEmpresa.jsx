@@ -13,7 +13,6 @@ export const PerfilEmpresa = () => {
             <div className="groupon-item">
                 <div className="detalles-cita">
                     <h3>Empresa</h3>
-                    <hr></hr>
                     <p>Servicio de empresa</p>
                     <div className="buttons">
                         <button className="comprar-denuevo btn btn-primary mx-1">Cómprala de nuevo</button>

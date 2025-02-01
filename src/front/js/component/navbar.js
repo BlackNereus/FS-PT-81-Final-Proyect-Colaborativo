@@ -12,8 +12,8 @@ export const Navbar = () => {
     navigate("/login");
   }
   
-  const handleSignUp = () =>{
-    navigate("/registro");
+  const handlePickBotton = () =>{
+    navigate("/elige");
   }
   
 
@@ -43,7 +43,7 @@ export const Navbar = () => {
             </li>
           </ul>
           <button className="btn btn-outline-primary mx-1" onClick={handleLogin}>Iniciar Sesion</button>
-          <button className="btn btn-outline-primary" onClick={handleSignUp}>Registro</button>
+          <button className="btn btn-outline-primary" onClick={handlePickBotton}>Registro</button>
         </div>
       </div>
     </nav>
