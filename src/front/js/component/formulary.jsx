@@ -25,7 +25,7 @@ export const Formulary = () => {
     };
 
     const handleSignedUp = () => {
-      navigate("/");
+      navigate("/elegir");
     } 
     return (
       <form className="custom-register-form" onSubmit={handleSubmit}>
