@@ -30,7 +30,7 @@ export const Navbar = () => {
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid justify-content-start mx-5">
         <a className="navbar-brand" href="/">
-          <img src={logonavbar} alt="CLINICA CENTRAL" className="logonavbar" />
+          <img src={logonavbar} alt="AGENPRO" className="logonavbar" />
         </a>
         <button
           className="navbar-toggler"
