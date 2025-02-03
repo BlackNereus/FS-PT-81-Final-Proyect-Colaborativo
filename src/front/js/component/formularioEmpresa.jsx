@@ -41,12 +41,12 @@ export const FormularioEmpresas = () => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="compañia">Compañia</label>
+        <label htmlFor="compañia">Empresa</label>
         <input
           type="text"
           id="compañia"
           name="compañia"
-          value={formData.compañia}
+          value={formData.company}
           onChange={handleChange}
           required
         />
