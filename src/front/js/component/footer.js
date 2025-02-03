@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import logonavbar from "../../img/agenpro.png";
 
 /* Footer 2*/
@@ -28,9 +28,10 @@ export const Footer = () => {
         <div className="footer-section">
           <h4>Síguenos</h4>
           <div className="social-icons">
-            <a href="#"><FaFacebook /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaLinkedin /></a>
+            <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2F4GeeksAcademyES%2F" target="_blank"><FaFacebook /></a>
+            <a href="https://www.instagram.com/4geeksacademyes/" target="_blank"><FaInstagram /></a>
+            <a href="https://es.linkedin.com/school/4geeksacademyes/" target="_blank"><FaLinkedin /></a>
+            <a href="https://github.com/4GeeksAcademy" target="_blank"><FaGithub /></a>
           </div>
         </div>
       </div>

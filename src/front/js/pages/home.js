@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { FaUser, FaEnvelope, FaEdit } from 'react-icons/fa';
+
 
 import "../../styles/home.css";
 
@@ -105,9 +108,7 @@ export const Home = () => {
 				<div>
 					<div className="d-flex flex-column justify-content-center align-items-center my-4 divdelfondo">
 						<h1>AGENPRO es tu agenda digital sin estrés. ¿Listo para evolucionar?</h1>
-						<div className="d-grid gap-2 col-4 mx-auto">
-							<button className="btn-especial">CONTACTANOS</button>
-						</div>
+						
 					</div>
 				</div>
 			</div>
