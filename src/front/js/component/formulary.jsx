@@ -76,7 +76,7 @@ export const Formulary = () => {
             required
           />
         </div>
-        <button type="submit" className="custom-register-button" onClick={handleSignedUp}>
+        <button type="submit" className="custom-register-button" onClick={() => handleSubmit()}>
           Registrarme
         </button>
         <p className="form-footer">
