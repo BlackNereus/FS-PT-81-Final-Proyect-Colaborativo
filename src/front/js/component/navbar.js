@@ -25,6 +25,11 @@ export const Navbar = () => {
     navigate("/"); // Redirige al inicio
   };
 
+  const handleCuenta = () => {
+
+    navigate("/cuenta")
+  }
+
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -72,9 +77,15 @@ export const Navbar = () => {
               </button>
             </>
           ) : (
-            <button className="btn btn-outline-danger" onClick={handleLogout}>
-              Cerrar Sesión
-            </button>
+            <>
+              <button className="btn btn-outline-secondary mx-1" onClick={() => handleCuenta()}>
+                Cuenta
+              </button>
+
+              <button className="btn btn-outline-danger" onClick={() => handleLogout()}>
+                Cerrar Sesión
+              </button>
+            </>
           )}
         </div>
       </div>

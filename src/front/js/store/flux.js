@@ -404,7 +404,45 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: () => {
 				localStorage.removeItem("token"); // Elimina el token del localStorage
 				setStore({ auth: false, token: null }); // Actualiza el estado global
-			  },
+			},
+
+			editarPerfil: async (id, updatedData) => {
+				try{
+					const responde = await fetch(process.env.BACKEND_URL + "/api/edit" + id,{
+						method: "PUT",
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${localStorage.getItem('token')}`
+						},
+						body: JSON.stringify(updatedData)
+					});
+
+					if(!response.ok){
+						throw new Error("Error actualizando perfil");
+					}
+
+					const data = await reponse.json()
+
+					const store = getStore()
+
+					setStore({
+						user: store.user.map((user) =>
+							user.id === id ? {...user, ...data.user } : user
+						),
+
+					});
+
+					console.log("Perfil actualizado:", data);
+					return true;
+				}
+
+				catch (error) {
+					console.error("Error actualizando el perfil:", error);
+					return false;
+				}
+				
+			},
+
 		},
 	}
 };
