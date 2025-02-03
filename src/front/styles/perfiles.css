@@ -65,3 +65,47 @@
     background: #ff9800;
     color: white;
 }
+/*BOTONES ELEGIR MENU*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.containe-botones {
+    width: 60%;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+hr {
+    border: 1px solid white;
+    margin-bottom: 20px;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.cliente, .empresa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid white;
+    width: 150px;
+}
+

@@ -41,7 +41,7 @@ export const FormularioEmpresas = () => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="compañia">Company</label>
+        <label htmlFor="compañia">Empresa</label>
         <input
           type="text"
           id="compañia"

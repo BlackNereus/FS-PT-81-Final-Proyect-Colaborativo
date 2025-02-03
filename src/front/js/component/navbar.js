@@ -15,8 +15,8 @@ export const Navbar = () => {
   };
 
   // Función para manejar el registro
-  const handleSignUp = () => {
-    navigate("/registro");
+  const handleElegir = () => {
+    navigate("/elige");
   };
 
   // Función para manejar el cierre de sesión
@@ -73,7 +73,7 @@ export const Navbar = () => {
               <button className="btn btn-outline-primary mx-1" onClick={handleLogin}>
                 Iniciar Sesión
               </button>
-              <button className="btn btn-outline-primary" onClick={handleSignUp}>
+              <button className="btn btn-outline-primary" onClick={handleElegir}>
                 Registro
               </button>
             </>
