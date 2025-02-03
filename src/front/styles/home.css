@@ -241,6 +241,10 @@ body {
   }
 }
 
+.enlacefooter{
+  text-decoration: none;
+}
+
 
 /*FOOTER
 .footer {
