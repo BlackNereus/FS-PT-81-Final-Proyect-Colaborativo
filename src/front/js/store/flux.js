@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			users: [],
+			user: null,
 			companies: [],
 			services: [],
 			date: [],
@@ -407,8 +408,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			editarPerfil: async (id, updatedData) => {
-				try{
-					const responde = await fetch(process.env.BACKEND_URL + "/api/edit" + id,{
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/edit/${id}`, {  // Corregir URL
 						method: "PUT",
 						headers: {
 							"Content-Type": "application/json",
@@ -416,31 +417,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						body: JSON.stringify(updatedData)
 					});
-
-					if(!response.ok){
+			
+					if (!response.ok) {
 						throw new Error("Error actualizando perfil");
 					}
-
-					const data = await reponse.json()
-
-					const store = getStore()
-
+			
+					const data = await response.json();  // Corregir typo "reponse"
+			
+					const store = getStore();
+					
+					// Actualizar usuario en el store (asumiendo que store.user es el objeto del usuario logueado)
 					setStore({
-						user: store.user.map((user) =>
-							user.id === id ? {...user, ...data.user } : user
-						),
-
+						user: {...store.user, ...data.user}  // Actualizar objeto directamente
 					});
-
+			
 					console.log("Perfil actualizado:", data);
 					return true;
-				}
-
-				catch (error) {
+				} catch (error) {
 					console.error("Error actualizando el perfil:", error);
 					return false;
 				}
-				
 			},
 
 		},
