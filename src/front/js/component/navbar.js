@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import logonavbar from "../../img/agenpro.png";
 import { useContext } from "react"; // Importa useContext
 import { Context } from "../store/appContext"; // Importa el contexto de tu flux
+import logonavbar from "../../img/agenpro.png";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -15,8 +15,8 @@ export const Navbar = () => {
   };
 
   // Función para manejar el registro
-  const handleSignUp = () => {
-    navigate("/registro");
+  const handleElegir = () => {
+    navigate("/elige");
   };
 
   // Función para manejar el cierre de sesión
@@ -35,7 +35,7 @@ export const Navbar = () => {
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid justify-content-start mx-5">
         <a className="navbar-brand" href="/">
-          <img src={logonavbar} alt="CLINICA CENTRAL" className="logonavbar" />
+          <img src={logonavbar} alt="AGENPRO" className="logonavbar" />
         </a>
         <button
           className="navbar-toggler"
@@ -51,18 +51,16 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link navbarcoso" href="#">ELEMENTO 1</a>
+              <a className="nav-link navbarcoso" href="#">Inicio</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link navbarcoso" href="#">
-                ELEMENTO 2
-              </a>
+              <a className="nav-link navbarcoso" href="#consultasnavbar">Contacto</a>
             </li>
             <li className="nav-item">
               <a className="nav-link navbarcoso" href="#">ELEMENTO 3</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link navbarcoso" href="#">Contacto</a>
+              <a className="nav-link navbarcoso" href="#">ELEMENTO 4</a>
             </li>
           </ul>
 
@@ -72,7 +70,7 @@ export const Navbar = () => {
               <button className="btn btn-outline-primary mx-1" onClick={handleLogin}>
                 Iniciar Sesión
               </button>
-              <button className="btn btn-outline-primary" onClick={handleSignUp}>
+              <button className="btn btn-outline-primary" onClick={handleElegir}>
                 Registro
               </button>
             </>

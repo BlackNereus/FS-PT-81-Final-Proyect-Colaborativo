@@ -10,11 +10,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			auth: localStorage.getItem('token') || false,
 			token: null,
 		},
-
 		actions: {
 			getUserData: async () => {
 				try {
-
 					const resp = await fetch(process.env.BACKEND_URL + '/api/protected', {
 						method: 'GET',
 						headers: {
@@ -32,8 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(error)
 				}
 			},
-
-			register: async formData => {
+			register: async formData => {				
 				try {
 					const resp = await fetch(process.env.BACKEND_URL + '/api/register', {
 						method: 'POST',
