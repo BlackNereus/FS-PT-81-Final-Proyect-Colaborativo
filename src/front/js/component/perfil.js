@@ -10,30 +10,33 @@ export const Perfil = () => {
     name: ""
   });
 
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        setLoading(true);
-        if (!store.user) {
-          await actions.getUserData();
-        }
-        // Verificar nuevamente si store.user existe después de la llamada
-        if (store.user) {
-          setUserData({
-            name: store.user.name,
-          });
-        }
-      } catch (error) {
-        console.error("Error cargando datos:", error);
-      }
-    };
-    loadData();
-  }, [store.user]);
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     if (!store.user) {
+  //       try {
+  //         await actions.getUserData();  // Aseguramos que los datos se carguen si no están en el store
+  //       } catch (error) {
+  //         console.error("Error cargando datos:", error);
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     } else {
+  //       setUserData({
+  //         name: store.user.name,
+  //       });
+  //     }
+  //   };
+  
+  //   loadData();
+  // }, [store.user, actions]);
+  useEffect(() =>{
+    actions.getUserData();
+  },[]);
 
   console.log(store.user)
   console.log(store.id)
+  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData(prev => ({ ...prev, [name]: value }));
@@ -41,7 +44,7 @@ export const Perfil = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    actions.editarPerfil();
+    actions.editarPerfil(store.id, userData);
     navigate("/cuenta")
     
   };
@@ -56,14 +59,14 @@ export const Perfil = () => {
             type="text"
             className="form-control"
             name="name"
-            value={userData.name}
+            value={store.user?.name}
             onChange={handleChange}
             required
           />
         </div>
 
 
-        <button className="btn btn-primary" onClick={() =>{handleSubmit}}>
+        <button className="btn btn-primary" type="submit">
           Actualizar
         </button>
       </form>

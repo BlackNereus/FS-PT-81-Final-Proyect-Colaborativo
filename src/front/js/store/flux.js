@@ -13,53 +13,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 			name: null,
 		},
 		actions: {
-			getUserData: async (id) => {
+			getUserData: async () => {
 				try {
-					const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`, {
+					console.log("Ejecutando getUserData")
+					const id = localStorage.getItem("id")
+					if (!id) {
+						throw new Error("ID del usuario no encontrado en localStorage.");
+					}
+					const token = localStorage.getItem("token")
+					
+					const resp = await fetch(`${process.env.BACKEND_URL}api/user`, {
 						method: 'GET',
 						headers: {
+							'Authorization': `Bearer ${token}`,
 							'Content-Type': 'application/json',
-							'Authorization': `Bearer ${localStorage.getItem('token')}`
-						},
+							
+						}
 					});
 			
-					if (!resp.ok) {
-						if (resp.status === 404) {
-							throw new Error("No hay usuario registrados.");
-						}
-						throw new Error("Error al obtener los usuarios.");
-					}
-			
 					const data = await resp.json();
-					console.log(data);
 					
-					localStorage.setItem('token', data.token); // Esto solo es necesario si el backend devuelve un nuevo token
+					localStorage.setItem('token', data.token,); 
+					console.log("Informacion de usuario", data);
 					setStore({ user: data.user });
+					return data.user;
 				} catch (error) {
 					console.error(error);
 				}
 			},
-			register: async formData => {				
-				try {
-					const resp = await fetch(process.env.BACKEND_URL + '/api/register', {
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json'
-						},
-						body: JSON.stringify(formData)
-					})
-					if (!resp.ok) throw new Error('Error registering')
-					const data = await resp.json()
-					console.log(data)
-					localStorage.setItem('token', data.token)
-					setStore({ auth: true, token: data.token, user: data.user })
-					return true
-				}
-				catch (error) {
-					console.error(error)
-					return false
-				}
-			},
+			
 			getUsers: async () => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + '/api/users')
@@ -373,6 +355,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					// Guarda el token en localStorage y actualiza el estado global
 					localStorage.setItem("token", data.token);
+					localStorage.setItem( "id", data.user.id);
 					setStore({ auth: true, token: data.token, user: data.user , id: data.user.id});
 
 					return true; // Indica que el login fue exitoso
@@ -383,10 +366,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			register: async formData => {				
+				try {
+					const resp = await fetch(process.env.BACKEND_URL + '/api/register', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(formData)
+					})
+					if (!resp.ok) throw new Error('Error registering')
+					const data = await resp.json()
+					console.log(data)
+					localStorage.setItem('token', data.token)
+					setStore({ auth: true, token: data.token, user: data.user })
+					return true
+				}
+				catch (error) {
+					console.error(error)
+					return false
+				}
+			},
+
 
 			verify: async (token) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL + "/api/verify" + token, {
+					const response = await fetch(process.env.BACKEND_URL + "/api/user" + token, {
 						method: "POST",
 						headers: {"Content-Type": "application/json"},
 						body: JSON.stringify(formData),
@@ -412,11 +417,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			logout: () => {
 				localStorage.removeItem("token"); // Elimina el token del localStorage
-				setStore({ auth: false, token: null }); // Actualiza el estado global
+				localStorage.removeItem("id"); 
+				setStore({ auth: false, token: null , id: null}); // Actualiza el estado global
 			},
 
 			editarPerfil: async (id, updatedData) => {
 				try {
+					console.log(id)
+					console.log(updatedData)
+					
 					const response = await fetch(`${process.env.BACKEND_URL}api/user/${id}`, { 
 						method: "PUT",
 						headers: {
@@ -425,13 +434,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						body: JSON.stringify(updatedData)
 					});
-			
+				
 					if (!response.ok) {
 						throw new Error("Error actualizando perfil");
 					}
 			
-					const data = await response.json();  // Corregir typo "reponse"
-			
+					const data = await response.json();  
 					const store = getStore();
 					
 					setStore({

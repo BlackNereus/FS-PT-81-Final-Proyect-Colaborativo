@@ -20,9 +20,12 @@ def get_users():
    users = [users.serialize() for users in data]
    return jsonify ({"msg":"Ok", "data":users}), 200
 
-@api.route('/user/<int:id>', methods=['GET'])
+@api.route('/user', methods=['GET'])
 @jwt_required()
-def one_user(id): 
+def one_user(): 
+   id = get_jwt_identity()
+   print({request.headers})
+   print(id)
    user = Users.query.get(id)  
    if user is None:
         return jsonify({"msg": f"No user found with id {id}, the database might be empty"}), 404
@@ -288,7 +291,7 @@ def login():
 @api.route('/protected', methods=['GET'])
 @jwt_required()
 def protected():
-    identity = get_jwt_identity()
-    print('user identity->', identity)
+    id = get_jwt_identity()
+    print('user identity->', id)
     user = Users.query.get(id)
     return jsonify({"msg":"OK", "user": user.serialize()})
