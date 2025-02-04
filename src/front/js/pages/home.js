@@ -102,13 +102,13 @@ export const Home = () => {
 				</div>
 
 				<div id="consultasnavbar" className="divdelfondopadre">
-					<div className="divizquierda">
-					<h1>Metodos de pagos o una imagen o un mapa de madrid simulando que es google maps</h1>
+					<div className="divizquierda p-2">
+					   <h1>Un mapa de madrid simulando que es google maps</h1>
 						<div className="divimgmetodospago">
-							<img src="https://benditapatagonia.com/wp-content/uploads/2024/11/group_1000001871.webp" className="imgmetodospago" />
+							<img src="https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2016/05/543113-asi-funciona-google-maps-conexion-internet.jpg" className="imgmetodospago" />
 						</div>
 					</div>
-					<div className="divderecha">
+					<div className="divderecha p-2">
 						<h1>Contacto</h1>
 						<div className="divformularioconsulta">
 							<form id="contactForm" novalidate>

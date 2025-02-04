@@ -323,7 +323,7 @@ body {
 .divdelfondopadre {
   background-color: #2C5364;
   margin: 0;
-  padding: 0;
+  
   font-size: 4rem;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   line-height: 1.5;
@@ -333,6 +333,7 @@ body {
   display: flex;
   justify-content: space-around;
   text-align: center;
+  align-items: center;
 }
 
 .divformularioconsulta {
