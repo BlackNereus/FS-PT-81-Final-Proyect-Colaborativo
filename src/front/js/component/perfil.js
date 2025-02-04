@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 
 export const Perfil = () => {
   const { store, actions } = useContext(Context);
-  console.log( store.users);
+ const navigate = useNavigate()
   const [userData, setUserData] = useState({
-    lastname: "",
-    name: "",
+    name: ""
   });
 
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,6 @@ export const Perfil = () => {
         if (store.user) {
           setUserData({
             name: store.user.name,
-            lastname: store.user.lastname,
           });
         }
       } catch (error) {
@@ -34,6 +33,7 @@ export const Perfil = () => {
   }, [store.user]);
 
   console.log(store.user)
+  console.log(store.id)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData(prev => ({ ...prev, [name]: value }));
@@ -41,6 +41,8 @@ export const Perfil = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    actions.editarPerfil();
+    navigate("/cuenta")
     
   };
 
@@ -60,17 +62,6 @@ export const Perfil = () => {
           />
         </div>
 
-        <div className="mb-3">
-          <label>LastName</label>
-          <input
-            type="lastname"
-            className="form-control"
-            name="lastname"
-            value={userData.lastname}
-            onChange={handleChange}
-            required
-          />
-        </div>
 
         <button className="btn btn-primary" onClick={() =>{handleSubmit}}>
           Actualizar

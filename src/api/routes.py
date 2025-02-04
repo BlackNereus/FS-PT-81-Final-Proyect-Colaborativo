@@ -54,7 +54,7 @@ def delete_user(id):
 
 
 
-@api.route('/users/<int:id>', methods=['PUT'])
+@api.route('/user/<int:id>', methods=['PUT'])
 def update_user(id):
    user = Users.query.get(id)
    if user is None:

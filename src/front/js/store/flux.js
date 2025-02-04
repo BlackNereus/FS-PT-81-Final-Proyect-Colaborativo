@@ -373,7 +373,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					// Guarda el token en localStorage y actualiza el estado global
 					localStorage.setItem("token", data.token);
-					setStore({ auth: true, token: data.token, user: data.user });
+					setStore({ auth: true, token: data.token, user: data.user , id: data.user.id});
 
 					return true; // Indica que el login fue exitoso
 				} 
@@ -417,7 +417,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			editarPerfil: async (id, updatedData) => {
 				try {
-					const response = await fetch(`${process.env.BACKEND_URL}/api/user/${id}`, {  // Corregir URL
+					const response = await fetch(`${process.env.BACKEND_URL}api/user/${id}`, { 
 						method: "PUT",
 						headers: {
 							"Content-Type": "application/json",
@@ -434,7 +434,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			
 					const store = getStore();
 					
-					// Actualizar usuario en el store (asumiendo que store.user es el objeto del usuario logueado)
 					setStore({
 						user: {...store.user, ...data.user}  // Actualizar objeto directamente
 					});
