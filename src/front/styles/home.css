@@ -68,12 +68,16 @@
   text-decoration: underline;
 }
 
-/*LOGIN*/ 
+
 body {
   background-color: #f4f7fa;
   font-family: Arial, sans-serif;
+  position:relative;
+  padding-bottom: 3em;
+  min-height: 100vh;
 }
 
+/*LOGIN*/ 
 .form {
   max-width: 400px;
   margin: 50px auto;
