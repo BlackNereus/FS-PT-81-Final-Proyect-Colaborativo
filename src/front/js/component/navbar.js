@@ -56,12 +56,6 @@ export const Navbar = () => {
             <li className="nav-item">
               <a className="nav-link navbarcoso" href="#consultasnavbar">Contacto</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link navbarcoso" href="#">ELEMENTO 3</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link navbarcoso" href="#">ELEMENTO 4</a>
-            </li>
           </ul>
 
           {/* Mostrar los botones dependiendo del estado de autenticación */}
