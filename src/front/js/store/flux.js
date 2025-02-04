@@ -9,25 +9,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			auth: localStorage.getItem('token') || false,
 			token: null,
+			id: null,
+			name: null,
 		},
 		actions: {
-			getUserData: async () => {
+			getUserData: async (id) => {
 				try {
-					const resp = await fetch(process.env.BACKEND_URL + '/api/protected', {
+					const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`, {
 						method: 'GET',
 						headers: {
 							'Content-Type': 'application/json',
 							'Authorization': `Bearer ${localStorage.getItem('token')}`
 						},
-					})
-					if (!resp.ok) throw new Error('Error registering')
-					const data = await resp.json()
-					console.log(data)
-					localStorage.setItem('token', data.token)
-					setStore({ user: data.user })
-				}
-				catch (error) {
-					console.error(error)
+					});
+			
+					if (!resp.ok) {
+						if (resp.status === 404) {
+							throw new Error("No hay usuario registrados.");
+						}
+						throw new Error("Error al obtener los usuarios.");
+					}
+			
+					const data = await resp.json();
+					console.log(data);
+					
+					localStorage.setItem('token', data.token); // Esto solo es necesario si el backend devuelve un nuevo token
+					setStore({ user: data.user });
+				} catch (error) {
+					console.error(error);
 				}
 			},
 			register: async formData => {				
@@ -43,7 +52,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json()
 					console.log(data)
 					localStorage.setItem('token', data.token)
-					setStore({ auth: true, token: data.token })
+					setStore({ auth: true, token: data.token, user: data.user })
 					return true
 				}
 				catch (error) {
@@ -64,10 +73,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getUserId: async (id) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL + '/api/users/' + id)
+					const response = await fetch(process.env.BACKEND_URL + '/api/user/' + id)
 					if (!response.ok) throw new Error("Error obteniendo el id del Usuario");
 					const data = await response.json();
-					return data.user;
+					
+					setStore({user: data.user});
 				} catch (error) {
 					console.error("Error obteniendo el ID del usuario:", error);
 				}
@@ -99,7 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deleteUser: async (id) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL + '/api/users/' + id, {
+					const response = await fetch(process.env.BACKEND_URL + '/api/user/' + id, {
 						method: "DELETE"
 					});
 					if (!response.ok) throw new Error("Error borrando al usuario");
@@ -112,16 +122,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			updateUser: async (id, email, password) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL + '/api/users/' + id, {
+					const response = await fetch(process.env.BACKEND_URL + '/api/user/' + id, {
 						method: "PUT",
-						headers: { "Content-Type": "application/json" },
+						headers: { "Content-Type": "application/json",
+							'Authorization': `Bearer ${localStorage.getItem('token')}`
+						 },
 						body: JSON.stringify({ email, password }),
 					});
 					if (!response.ok) throw new Error("Error actualizando al usuario");
 					const data = await response.json();
 					const store = getStore();
 					setStore({
-						users: store.user.map((user) => user.id === id ? { ...user, ...data.user } : user),
+						user: store.user.map((user) => user.id === id ? { ...user, ...data.user } : user),
 					});
 				} catch (error) {
 					console.error("error actualizando al usuario");
@@ -346,7 +358,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			loginUser: async (formData) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL + "/api/login", {
+					const response = await fetch(process.env.BACKEND_URL + "api/login", {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify(formData),
@@ -361,7 +373,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					// Guarda el token en localStorage y actualiza el estado global
 					localStorage.setItem("token", data.token);
-					setStore({ auth: true, token: data.token });
+					setStore({ auth: true, token: data.token, user: data.user });
 
 					return true; // Indica que el login fue exitoso
 				} 
@@ -390,8 +402,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					localStorage.setItem("token", data.token);
 					getStore({auth: true, token: data.token});
 
-
-
 					return true;
 				}
 				catch(error) {
@@ -399,6 +409,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
+
 			logout: () => {
 				localStorage.removeItem("token"); // Elimina el token del localStorage
 				setStore({ auth: false, token: null }); // Actualiza el estado global
@@ -406,7 +417,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			editarPerfil: async (id, updatedData) => {
 				try {
-					const response = await fetch(`${process.env.BACKEND_URL}/api/edit/${id}`, {  // Corregir URL
+					const response = await fetch(`${process.env.BACKEND_URL}/api/user/${id}`, {  // Corregir URL
 						method: "PUT",
 						headers: {
 							"Content-Type": "application/json",
